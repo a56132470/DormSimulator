@@ -1,0 +1,16 @@
+{
+	"panelInfoList":
+	[
+		{"panelType":"GameStart","path":"UIPanel/GameStartPanel"},
+		{"panelType":"Save","path":"UIPanel/SavePanel"},
+		{"panelType":"MainMenu","path":"UIPanel/MainMenuPanel"},
+		{"panelType":"Action","path":"UIPanel/ActionPanel"},
+		{"panelType":"Setting","path":"UIPanel/SettingPanel"},
+		{"panelType":"Map","path":"UIPanel/MapPanel"},
+		{"panelType":"Roommate","path":"UIPanel/RoommatePanel"},
+		{"panelType":"Player","path":"UIPanel/PlayerPanel"},
+		{"panelType":"Store","path":"UIPanel/StorePanel"},
+		{"panelType":"End","path":"UIPanel/EndPanel"},
+		{"panelType":"Place","path":"UIPanel/PlacePanel"}
+	]
+}

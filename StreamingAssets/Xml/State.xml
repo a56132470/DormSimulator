@@ -1,0 +1,100 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<States>
+    <State id = "State_Invitation_01">
+        <name>帮助1</name>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>0</creativity>
+		<duration>9999</duration>
+        <OtherEffect>玩家获得全属性加成+5</OtherEffect>
+    </State>
+	
+    <State id = "State_Invitation_02">
+        <name>帮助2</name>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>0</creativity>
+		<duration>9999</duration>
+        <OtherEffect>小游戏的奖励翻倍。一级的小游戏自动判定成功。</OtherEffect>
+    </State>	
+	
+    <State id = "State_Invitation_03">
+        <name>帮助3</name>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>0</creativity>
+		<duration>9999</duration>
+        <OtherEffect>【劳动】类行动消耗行动点数-1（不低于零）</OtherEffect>
+    </State>	
+	
+	<State id = "State_Temporarily_01">
+        <name>摄入糖分</name>
+        <logic>0</logic>
+        <talk>2</talk>
+        <athletics>0</athletics>
+        <creativity>1</creativity>
+		<duration>2</duration>
+        <OtherEffect></OtherEffect>
+    </State>	
+	
+	<State id = "State_Temporarily_02">
+        <name>提神醒脑</name>
+        <logic>1</logic>
+        <talk>1</talk>
+        <athletics>0</athletics>
+        <creativity>1</creativity>
+		<duration>2</duration>
+        <OtherEffect></OtherEffect>
+    </State>	
+	
+	<State id = "State_Temporarily_03">
+        <name>临时侦探</name>
+        <logic>2</logic>
+        <talk>0</talk>
+        <athletics>1</athletics>
+        <creativity>0</creativity>
+		<duration>2</duration>
+        <OtherEffect></OtherEffect>
+    </State>	
+	
+	<State id = "State_Temporarily_04">
+        <name>好像懂了</name>
+        <logic>1</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>2</creativity>
+		<duration>2</duration>
+        <OtherEffect></OtherEffect>
+    </State>	
+	<State id = "State_Temporarily_05">
+        <name>新的开始</name>
+        <logic>1</logic>
+        <talk>1</talk>
+        <athletics>1</athletics>
+        <creativity>1</creativity>
+		<duration>3</duration>
+        <OtherEffect></OtherEffect>
+    </State>	
+	<State id = "State_Identity_01">
+        <name>工作人员</name>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>0</creativity>
+		<duration>9999</duration>
+        <OtherEffect>可以在各类活动现场自由通行。</OtherEffect>
+    </State>
+	
+	<State id = "State_Identity_02">
+        <name>职业选手</name>
+        <logic>2</logic>
+        <talk>2</talk>
+        <athletics>2</athletics>
+        <creativity>2</creativity>
+		<duration>9999</duration>
+        <OtherEffect></OtherEffect>
+    </State>
+</States>

@@ -1,0 +1,46 @@
+P think left:我时常想，人为什么会在同一个地方徘徊。
+P think left:而其意义又是什么？
+C smile right:所以你刚才走哪去了？
+旁白:说话的这个人是我的舍友C。
+旁白:他个子比较小，虽然他说自己经常生病，不过看上去却非常精神的样子。
+P think left:我也想知道
+A normal right: 他大概是迷路了，和暑假的时候一样。
+P resignedly left:...
+旁白:这个人是我的舍友A。
+旁白:他是本地人，暑假的时候就是他带着我们在本市四处逛。
+旁白:人挺好，就是说话从不看气氛。
+P resignedly left:我不就是睡过头了吗，你们集合的时候也不叫我。
+B normal right:我叫了啊，你说再睡五分钟的。
+P question left:有吗？
+B normal right:...
+旁白:这个人是我的舍友B。
+旁白:本来以为会是很难相处的人，不过本人和照片给人的印象完全相反。
+B normal left:对了，班主任大概要来找你。
+P normal right:诶？
+跳转：进入第二段
+
+班主任 normal right:在这里你首先要了解自己的状态。
+班主任 normal right:点击你的头像可以查看自己的信息。
+班主任 normal right:在你头像旁边环绕的是五个行动点。
+班主任 normal right:点击舍友的头像可以查看他们的信息。
+班主任 normal left:点击这里可以查看可以采取的行动。
+班主任 normal left:拖动一个行动选项可以将它添加到右边的序列中。
+班主任 normal left:点击确定就可以执行行动了。
+班主任 normal left:点击空白处关闭。
+班主任 normal left:需要注意的是每个行动选项都会消耗行动点。
+班主任 normal left:行动点每回合会自动回复。
+班主任 normal left:点击这里可以进入下一个回合。
+班主任 normal left:听清楚了吗，需不需要再讲一遍？
+
+
+班主任 normal left:大学不像高中，班主任不会天天跟在你身边。
+班主任 normal left:我能帮你们的不多，剩下的要靠你们自觉了。
+menu 1：好的	->	P normal left: 好的
+menu 2:  谢谢老师	->	P normal left: 谢谢老师
+
+
+
+
+
+
+

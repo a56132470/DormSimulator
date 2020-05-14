@@ -1,0 +1,342 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<Actions>
+    <Action id = "Action_Study_01">
+        <name>数学</name>
+        <consume>1</consume>
+        <logic>3</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>0</creativity>
+        <money>0</money>
+        <caption>在学了在学了，已经会背九九乘法表了。</caption>
+		<selfControl>80</selfControl>
+		<successRate>0.9</successRate>
+		<needLogic>250</needLogic>
+		<needTalk></needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity></needCreativity>
+		<caption_level1>在高数课上不小心睡着了。</caption_level1>
+		<caption_level2>事先预习了高数，听课时并没有遇到困难。</caption_level2>
+		<caption_level3>解题的时候突然开窍，感觉懂高数了。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Study_02">
+        <name>外语</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>3</talk>
+        <athletics>0</athletics>
+        <creativity>0</creativity>
+        <money>0</money>
+        <caption>外教老师在说什么一点都听不懂。</caption>
+		<selfControl>80</selfControl>
+		<successRate>0.9</successRate>
+		<needLogic></needLogic>
+		<needTalk>120</needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity></needCreativity>
+		<caption_level1>外教说了什么完全听不懂。</caption_level1>
+		<caption_level2>在外语课上和老师相谈甚欢，不过用的是中文。</caption_level2>
+		<caption_level3>教外教将中文，成功把外语课变成了中文课。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Study_03">
+        <name>体育</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>3</athletics>
+        <creativity>0</creativity>
+        <money>0</money>
+        <caption>同学们，下午我们测长跑。</caption>
+		<selfControl>60</selfControl>
+		<successRate>0.9</successRate>
+		<needLogic></needLogic>
+		<needTalk></needTalk>
+		<needAthletics>120</needAthletics>
+		<needCreativity></needCreativity>
+		<caption_level1>跑步的时候把拖鞋跑坏了。</caption_level1>
+		<caption_level2>体育测试的时候顺利达到了及格线。</caption_level2>
+		<caption_level3>上完体育课后大汗淋漓，胃口大开，吃了顿好的。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Study_04">
+        <name>美术</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>3</creativity>
+        <money>0</money>
+        <caption>这人像画的还行，脖子不错，脑袋重画。</caption>
+		<selfControl>60</selfControl>
+		<successRate>0.9</successRate>
+		<needLogic></needLogic>
+		<needTalk></needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity>180</needCreativity>
+		<caption_level1>画静物的时候把苹果给吃了。</caption_level1>
+		<caption_level2>在美术课上画了很多张速写，削断了两根铅笔。</caption_level2>
+		<caption_level3>美术课上画的素描被当成范例展示了。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Study_05">
+        <name>辩论</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>1</talk>
+        <athletics>1</athletics>
+        <creativity>0</creativity>
+        <money>0</money>
+        <caption>总是辩着辩着就打起来了。</caption>
+		<selfControl>60</selfControl>
+		<successRate>0.8</successRate>
+		<needLogic></needLogic>
+		<needTalk>120</needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity>120</needCreativity>
+		<caption_level1>被辩论的对手放了鸽子。</caption_level1>
+		<caption_level2>参加辩论会，场面十分激烈，差点打了起来。</caption_level2>
+		<caption_level3>参加辩论会，不过在途中变成了几个人一起吃火锅。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Study_06">
+        <name>编程</name>
+        <consume>1</consume>
+        <logic>1</logic>
+        <talk>0</talk>
+        <athletics>1</athletics>
+        <creativity>0</creativity>
+        <money>0</money>
+        <caption>.setMessage("The World!")</caption>
+		<selfControl>80</selfControl>
+		<successRate>0.8</successRate>
+		<needLogic>120</needLogic>
+		<needTalk></needTalk>
+		<needAthletics>100</needAthletics>
+		<needCreativity></needCreativity>
+		<caption_level1>写的程序里全是bug，改了好久。</caption_level1>
+		<caption_level2>看了很久的编程书，终于找到了需要的解决方案。</caption_level2>
+		<caption_level3>写了一天的程序，没有检查到任何bug。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Amusement_01">
+        <name>推理游戏</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>1</talk>
+        <athletics>0</athletics>
+        <creativity>1</creativity>
+        <money>0</money>
+        <caption>“我是预言家”“巧了我也是”</caption>
+		<selfControl>30</selfControl>
+		<successRate>0.8</successRate>
+		<needLogic></needLogic>
+		<needTalk>120</needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity>120</needCreativity>
+		<caption_level1>在推理游戏中非常不幸地被第一个票出，百口难辩。</caption_level1>
+		<caption_level2>在推理游戏中据理力争，与他人合力找出了真相。</caption_level2>
+		<caption_level3>在推理游戏中巧妙地瞒过了所有人，赢到了最后。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Amusement_02">
+        <name>象棋</name>
+        <consume>1</consume>
+        <logic>1</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>1</creativity>
+        <money>0</money>
+        <caption>摆摊的大爷总是会使一些奇怪的套路。</caption>
+		<selfControl>40</selfControl>
+		<successRate>0.7</successRate>
+		<needLogic>250</needLogic>
+		<needTalk></needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity>80</needCreativity>
+		<caption_level1>与卖烧饼的大爷下了一整天象棋，一局都没赢。</caption_level1>
+		<caption_level2>与卖烧饼的大爷下了一整天象棋，最后一局终于和他打成平手。</caption_level2>
+		<caption_level3>与卖烧饼的大爷下了一整天象棋，一局都没输。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Amusement_03">
+        <name>网游</name>
+        <consume>2</consume>
+        <logic>0</logic>
+        <talk>1</talk>
+        <athletics>1</athletics>
+        <creativity>2</creativity>
+        <money>0</money>
+        <caption>带带我……我让你带带我啊啊啊啊啊！</caption>
+		<selfControl>10</selfControl>
+		<successRate>0.6</successRate>
+		<needLogic></needLogic>
+		<needTalk>100</needTalk>
+		<needAthletics>100</needAthletics>
+		<needCreativity>120</needCreativity>
+		<caption_level1>菜鸟发来了组队邀请，请选择接受或者同意。</caption_level1>
+		<caption_level2>打了一天排名，名次稍微上涨了一些。</caption_level2>
+		<caption_level3>手感大好，在游戏里连连得胜，对手纷纷来求抱大腿。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Amusement_04">
+        <name>足球</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>1</talk>
+        <athletics>2</athletics>
+        <creativity>0</creativity>
+        <money>0</money>
+        <caption>听说校队的队长踢球两年半了。</caption>
+		<selfControl>50</selfControl>
+		<successRate>0.7</successRate>
+		<needLogic></needLogic>
+		<needTalk></needTalk>
+		<needAthletics>180</needAthletics>
+		<needCreativity></needCreativity>
+		<caption_level1>踢足球，傻傻分不清自家球门和对方球门。</caption_level1>
+		<caption_level2>踢足球，双方势均力敌，难分胜负。</caption_level2>
+		<caption_level3>足球比赛上不负众望，在最后实现了逆转，赢得了比赛。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Amusement_05">
+        <name>摸鱼</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>1</athletics>
+        <creativity>2</creativity>
+        <money>0</money>
+        <caption>人设图？在画了在画了。</caption>
+		<selfControl>60</selfControl>
+		<successRate>0.7</successRate>
+		<needLogic></needLogic>
+		<needTalk></needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity>180</needCreativity>
+		<caption_level1>真的被请到河里摸鱼了。</caption_level1>
+		<caption_level2>在被发现了的前一秒停止偷懒，回到了工作中。</caption_level2>
+		<caption_level3>所有人都以为他在认真工作。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Amusement_06">
+        <name>卡牌游戏</name>
+        <consume>1</consume>
+        <logic>1</logic>
+        <talk>2</talk>
+        <athletics>0</athletics>
+        <creativity>0</creativity>
+        <money>0</money>
+        <caption>卡片对战的精髓在于说书啊！我的回合——</caption>
+		<selfControl>20</selfControl>
+		<successRate>0.8</successRate>
+		<needLogic>100</needLogic>
+		<needTalk>120</needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity></needCreativity>
+		<caption_level1>和社团的朋友对战，一直抽不到核心卡。</caption_level1>
+		<caption_level2>使用新卡组对战，成功打出了预想中的强力组合技。</caption_level2>
+		<caption_level3>新买的卡包里开出了非常稀有的卡片，心情很好。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Amusement_07">
+        <name>小说</name>
+        <consume>1</consume>
+        <logic>2</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>1</creativity>
+        <money>0</money>
+        <caption>据说原作者已经休刊一年了。</caption>
+		<selfControl>30</selfControl>
+		<successRate>0.9</successRate>
+		<needLogic></needLogic>
+		<needTalk></needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity>250</needCreativity>
+		<caption_level1>一直看的小说今天停更了。</caption_level1>
+		<caption_level2>在网上乱逛的时候发现了一本好看的小说。</caption_level2>
+		<caption_level3>休刊三年的作者恢复连载了，简直是奇迹。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Labor_01">
+        <name>楼层点名</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>0</creativity>
+        <money>20</money>
+        <caption>“906，晚点。”“全到。”</caption>
+		<selfControl>40</selfControl>
+		<successRate>0.8</successRate>
+		<needLogic></needLogic>
+		<needTalk>50</needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity></needCreativity>
+		<caption_level1>因为楼层点名不严格被批评了。</caption_level1>
+		<caption_level2>像平常一样去楼层点名。</caption_level2>
+		<caption_level3>楼层点名，所有的宿舍都非常配合。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Labor_02">
+        <name>写文章</name>
+        <consume>2</consume>
+        <logic>0</logic>
+        <talk>1</talk>
+        <athletics>0</athletics>
+        <creativity>1</creativity>
+        <money>40</money>
+        <caption>“什么？两千字？今晚就要？！”</caption>
+		<selfControl>60</selfControl>
+		<successRate>0.7</successRate>
+		<needLogic></needLogic>
+		<needTalk>180</needTalk>
+		<needAthletics></needAthletics>
+		<needCreativity>180</needCreativity>
+		<caption_level1>临近截稿日，但是一点灵感都没有。</caption_level1>
+		<caption_level2>修改了几次的稿子终于被通过了。</caption_level2>
+		<caption_level3>写的稿子非常有趣，点赞数比以往都多。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Labor_03">
+        <name>剪视频</name>
+        <consume>2</consume>
+        <logic>0</logic>
+        <talk>1</talk>
+        <athletics>1</athletics>
+        <creativity>0</creativity>
+        <money>40</money>
+        <caption>甲方爸爸的要求是五彩斑斓的黑。</caption>
+		<selfControl>60</selfControl>
+		<successRate>0.7</successRate>
+		<needLogic></needLogic>
+		<needTalk>120</needTalk>
+		<needAthletics>100</needAthletics>
+		<needCreativity></needCreativity>
+		<caption_level1>剪视频的时候软件崩溃，而且没有保存。</caption_level1>
+		<caption_level2>收集到了很多有趣的视频素材。</caption_level2>
+		<caption_level3>剪的视频上了视频网站的首页推荐。</caption_level3>
+    </Action>
+
+    <Action id = "Action_Labor_04">
+        <name>志愿者</name>
+        <consume>5</consume>
+        <logic>2</logic>
+        <talk>2</talk>
+        <athletics>2</athletics>
+        <creativity>2</creativity>
+        <money>0</money>
+        <caption>服务社会，不求回报。</caption>
+		<selfControl>70</selfControl>
+		<successRate>1</successRate>
+		<needLogic>180</needLogic>
+		<needTalk>180</needTalk>
+		<needAthletics>180</needAthletics>
+		<needCreativity>180</needCreativity>
+		<caption_level1>参加志愿活动，可惜走错了地方。</caption_level1>
+		<caption_level2>参加志愿活动，和小朋友们愉快地玩耍了一天。</caption_level2>
+		<caption_level3>参加志愿活动，受到了本地电视台的采访。</caption_level3>
+    </Action>
+</Actions>
