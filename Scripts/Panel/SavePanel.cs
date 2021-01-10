@@ -1,200 +1,206 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class SavePanel : BasePanel
+namespace Panel
 {
-    private Button ReturnBtn;
-    private Button SettingBtn;
-
-    private Button[] saveBtns;
-    private Player[] players;
-    private Roommate[][] Roommates;
-
-    private GameObject CreateSaveTipPanel;
-    private Button CST_CancelBtn;
-    private Button CST_DetermineBtn;
-
-    private GameObject CreateRolePanel;
-    private Button CRP_DetermineBtn;
-    private InputField CRP_CreateNameInputField;
-
-    // 当前点击的按钮的ID
-    private int Count;
-
-    public override void OnEnter()
+    public class SavePanel : BasePanel
     {
-        base.OnEnter();
-        gameObject.SetActive(true);
+        private Button m_ReturnBtn;
+        private Button m_SettingBtn;
+        private Button[] m_DeleteSaveBtns;
 
-        ReturnBtn.onClick.AddListener(OnReturnButtonClick);
-        SettingBtn.onClick.AddListener(OnSettingButtonClick);
-        saveBtns[0].onClick.AddListener(() => { OnSaveBtnClick(0); });
-        saveBtns[1].onClick.AddListener(() => { OnSaveBtnClick(1); });
-        saveBtns[2].onClick.AddListener(() => { OnSaveBtnClick(2); });
-        // CST:是否创建角色
-        CST_CancelBtn.onClick.AddListener(OnCSTCancelBtnClick);
-        CST_DetermineBtn.onClick.AddListener(OnCSTDetermineBtnClick);
-        // CRP:创建角色
-        CRP_DetermineBtn.onClick.AddListener(OnCRPDetermineBtnClick);
-    }
+        private Button[] m_SaveBtns;
+        private Player[] m_Players;
+        private Roommate[][] m_Roommates;
 
-    public override void OnExit()
-    {
-        base.OnExit();
+        private GameObject m_CreateSaveTipPanel;
+        private Button m_Cst_CancelBtn;
+        private Button m_Cst_DetermineBtn;
 
-        ReturnBtn.onClick.RemoveListener(OnReturnButtonClick);
-        SettingBtn.onClick.RemoveListener(OnSettingButtonClick);
-        saveBtns[0].onClick.RemoveListener(() => { OnSaveBtnClick(0); });
-        saveBtns[1].onClick.RemoveListener(() => { OnSaveBtnClick(1); });
-        saveBtns[2].onClick.RemoveListener(() => { OnSaveBtnClick(2); });
+        private GameObject m_CreateRolePanel;
+        private Button m_Crp_DetermineBtn;
+        private InputField m_Crp_CreateNameInputField;
 
-        // CST:是否创建角色
-        CST_CancelBtn.onClick.RemoveListener(OnCSTCancelBtnClick);
-        CST_DetermineBtn.onClick.RemoveListener(OnCSTDetermineBtnClick);
-        // CRP:创建角色
-        CRP_DetermineBtn.onClick.RemoveListener(OnCRPDetermineBtnClick);
-    }
+        // 当前点击的按钮的ID
+        private int m_Count;
 
-    public override void OnPause()
-    {
-        base.OnPause();
-        gameObject.SetActive(false);
-    }
-
-    public override void OnResume()
-    {
-        base.OnResume();
-        Init();
-        gameObject.SetActive(true);
-    }
-
-    private void OnReturnButtonClick()
-    {
-        UIPanelManager.Instance.PopPanel();
-    }
-
-    private void OnSettingButtonClick()
-    {
-        UIPanelManager.Instance.PushPanel(UIPanelType.Setting);
-    }
-
-    public override void Init()
-    {
-        canvasGroup = transform.GetComponent<CanvasGroup>();
-        SettingBtn = transform.Find("SettingBtn").GetComponent<Button>();
-        ReturnBtn = transform.Find("ReturnBtn").GetComponent<Button>();
-        saveBtns = transform.Find("Saves").GetComponentsInChildren<Button>();
-        CreateSaveTipPanel = transform.Find("CreateSaveTipPanel").gameObject;
-        CST_CancelBtn = CreateSaveTipPanel.transform.Find("CST_CancelBtn").GetComponent<Button>();
-        CST_DetermineBtn = CreateSaveTipPanel.transform.Find("CST_DetermineBtn").GetComponent<Button>();
-
-        CreateRolePanel = transform.Find("CreateRolePanel").gameObject;
-        CRP_DetermineBtn = CreateRolePanel.transform.Find("CRP_DetermineBtn").GetComponent<Button>();
-        CRP_CreateNameInputField = CreateRolePanel.GetComponentInChildren<InputField>();
-
-
-        Roommates = new Roommate[3][];
-        Roommates[0] = new Roommate[3];
-        Roommates[1] = new Roommate[3];
-        Roommates[2] = new Roommate[3];
-        players = new Player[3];
-
-        for (int i = 0; i < 3; i++)
+        public override void OnEnter()
         {
-            players[i] = new Player();
-            for (int j = 0; j < 3; j++)
-            {
-                Roommates[i][j] = new Roommate();
-            }
-            GameSaveManager.instance.LoadGame(ref players[i], ref Roommates[i], i);
-            if (players[i] != null && !players[i].Name.Equals(""))
-            {
-                // 读取成功
-                saveBtns[i].transform.Find("Yes").gameObject.SetActive(true);
-                saveBtns[i].transform.Find("Yes/Week").GetComponent<Text>().text = "第" + players[i].CurWeek.ToString() + "周目";
-                saveBtns[i].transform.Find("Yes/Round").GetComponent<Text>().text = "第" + players[i].CurRound.ToString() + "回合";
-                saveBtns[i].transform.Find("Yes/Name").GetComponent<Text>().text = players[i].Name;
+            base.OnEnter();
+            gameObject.SetActive(true);
 
-                saveBtns[i].transform.Find("No").gameObject.SetActive(false);
-            }
-            else
+            m_ReturnBtn.onClick.AddListener(OnReturnButtonClick);
+            m_SettingBtn.onClick.AddListener(OnSettingButtonClick);
+
+            m_SaveBtns[0].onClick.AddListener(() => { OnSaveBtnClick(0); });
+            m_SaveBtns[1].onClick.AddListener(() => { OnSaveBtnClick(1); });
+            m_SaveBtns[2].onClick.AddListener(() => { OnSaveBtnClick(2); });
+            // CST:是否创建角色
+            m_Cst_CancelBtn.onClick.AddListener(OnCstCancelBtnClick);
+            m_Cst_DetermineBtn.onClick.AddListener(OnCstDetermineBtnClick);
+            // CRP:创建角色
+            m_Crp_DetermineBtn.onClick.AddListener(OnCrpDetermineBtnClick);
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            m_ReturnBtn.onClick.RemoveListener(OnReturnButtonClick);
+            m_SettingBtn.onClick.RemoveListener(OnSettingButtonClick);
+            for (int i = 0; i < 3; i++)
             {
-                saveBtns[i].transform.Find("No").gameObject.SetActive(true);
-                saveBtns[i].transform.Find("Yes").gameObject.SetActive(false);
+                // m_DeleteSaveBtns[i].onClick.RemoveAllListeners();
+                m_SaveBtns[i].onClick.RemoveAllListeners();
+            }
+
+            // CST:是否创建角色
+            m_Cst_CancelBtn.onClick.RemoveListener(OnCstCancelBtnClick);
+            m_Cst_DetermineBtn.onClick.RemoveListener(OnCstDetermineBtnClick);
+            // CRP:创建角色
+            m_Crp_DetermineBtn.onClick.RemoveListener(OnCrpDetermineBtnClick);
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+            Init();
+        }
+
+        private void OnReturnButtonClick()
+        {
+            UIPanelManager.Instance.PopPanel();
+        }
+
+        private void OnSettingButtonClick()
+        {
+            UIPanelManager.Instance.PushPanel(UIPanelType.Setting);
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            m_SettingBtn = transform.Find("SettingBtn").GetComponent<Button>();
+            m_ReturnBtn = transform.Find("ReturnBtn").GetComponent<Button>();
+            m_SaveBtns = transform.Find("Saves").GetComponentsInChildren<Button>();
+
+            m_CreateSaveTipPanel = transform.Find("CreateSaveTipPanel").gameObject;
+            m_Cst_CancelBtn = m_CreateSaveTipPanel.transform.Find("CST_CancelBtn").GetComponent<Button>();
+            m_Cst_DetermineBtn = m_CreateSaveTipPanel.transform.Find("CST_DetermineBtn").GetComponent<Button>();
+
+            m_CreateRolePanel = transform.Find("CreateRolePanel").gameObject;
+            m_Crp_DetermineBtn = m_CreateRolePanel.transform.Find("CRP_DetermineBtn").GetComponent<Button>();
+            m_Crp_CreateNameInputField = m_CreateRolePanel.GetComponentInChildren<InputField>();
+
+
+            m_Roommates = new Roommate[3][];
+            m_Roommates[0] = new Roommate[3];
+            m_Roommates[1] = new Roommate[3];
+            m_Roommates[2] = new Roommate[3];
+            m_Players = new Player[3];
+
+            LoadLocalSaves();
+
+        }
+        private void LoadLocalSaves()
+        {
+            for (var i = 0; i < 3; i++)
+            {
+                m_Players[i] = new Player();
+                for (var j = 0; j < 3; j++)
+                {
+                    m_Roommates[i][j] = new Roommate();
+                }
+                GameSaveManager.Instance.LoadGame(ref m_Players[i], ref m_Roommates[i], i);
+                if (m_Players[i] != null && !m_Players[i].Name.Equals(""))
+                {
+                    // 读取成功
+                    m_SaveBtns[i].transform.Find("Yes").gameObject.SetActive(true);
+                    m_SaveBtns[i].transform.Find("Yes/Week").GetComponent<Text>().text = "第" + m_Players[i].CurWeek.ToString() + "周目";
+                    m_SaveBtns[i].transform.Find("Yes/Round").GetComponent<Text>().text = "第" + m_Players[i].CurRound.ToString() + "回合";
+                    m_SaveBtns[i].transform.Find("Yes/Name").GetComponent<Text>().text = m_Players[i].Name;
+
+                    m_SaveBtns[i].transform.Find("No").gameObject.SetActive(false);
+                }
+                else
+                {
+                    m_SaveBtns[i].transform.Find("No").gameObject.SetActive(true);
+                    m_SaveBtns[i].transform.Find("Yes").gameObject.SetActive(false);
+                }
             }
         }
-    
-    }
-
-    private void OnSaveBtnClick(int count)
-    {
-        Count = count;
-        if (saveBtns[Count].transform.Find("Yes").gameObject.activeSelf)
+        private void OnSaveBtnClick(int count)
         {
-            GlobalVariable.instance.player = players[Count];
-            GlobalVariable.instance.roommates = Roommates[Count];
-            GlobalVariable.instance.SaveID = Count;
-            GameSaveManager.instance.LoadInventoryOnStart();
-            if(GlobalVariable.instance.player.CurRound>=24)
+            m_Count = count;
+            if (m_SaveBtns[m_Count].transform.Find("Yes").gameObject.activeSelf)
             {
-                UIPanelManager.Instance.PushPanel(UIPanelType.End);
+                GlobalManager.Instance.player = m_Players[m_Count];
+                GlobalManager.Instance.roommates = m_Roommates[m_Count];
+                GlobalManager.Instance.saveId = m_Count;
+                GameSaveManager.Instance.LoadInventoryOnStart();
+                GameObject.Find("Fungus/Characters/P").GetComponent<Fungus.Character>().NameText = GlobalManager.Instance.player.Name;
+                if (GlobalManager.Instance.player.CurRound >= 24)
+                {
+                    UIPanelManager.Instance.PushPanel(UIPanelType.End);
+                    PlotManager.Instance.ExecuteMainBlock("Game_End");
+                }
+                else
+                {
+                    UIPanelManager.Instance.PushPanel(UIPanelType.MainMenu);
+                }
+
+            }
+            else if (m_SaveBtns[m_Count].transform.Find("No").gameObject.activeSelf)
+            {
+                // 创建角色
+                CreateSaveTipPanelShow();
+            }
+        }
+
+        private void CreateSaveTipPanelShow()
+        {
+            // Show
+            if (!m_CreateSaveTipPanel.activeSelf)
+            {
+                m_SaveBtns[0].transform.parent.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                m_CreateSaveTipPanel.SetActive(true);
+            }
+        }
+
+        private void OnCstCancelBtnClick()
+        {
+            // Disappear
+            m_SaveBtns[0].transform.parent.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+            m_CreateSaveTipPanel.SetActive(false);
+        }
+
+        private void OnCstDetermineBtnClick()
+        {
+            m_CreateSaveTipPanel.SetActive(false);
+            m_CreateRolePanel.SetActive(true);
+        }
+
+        private void OnCrpDetermineBtnClick()
+        {
+            string playerName = m_Crp_CreateNameInputField.text;
+            if (playerName.Equals(""))
+            {
+                UIPanelManager.Instance.PushPanel(UIPanelType.Tip);
+                EventCenter.Broadcast(EventType.UPDATE_TIP, "请您输入名字");
             }
             else
             {
+                EventCenter.Broadcast(EventType.GAME_INIT, playerName, 1, m_Count);
+
+                GameSaveManager.Instance.SaveGame();
+                m_CreateRolePanel.SetActive(false);
+                m_Crp_CreateNameInputField.text = "";
+                m_SaveBtns[0].transform.parent.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                // 进行一次存档操作
                 UIPanelManager.Instance.PushPanel(UIPanelType.MainMenu);
+                PlotManager.Instance.ShowMain();
             }
-            
-        }
-        else if (saveBtns[Count].transform.Find("No").gameObject.activeSelf)
-        {
-            // 创建角色
-            CreateSaveTipPanelShow();
-        }
-    }
-
-    private void CreateSaveTipPanelShow()
-    {
-        // Show
-        if (!CreateSaveTipPanel.activeSelf)
-        {
-            saveBtns[0].transform.parent.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            CreateSaveTipPanel.SetActive(true);
-        }
-    }
-
-    private void OnCSTCancelBtnClick()
-    {
-        // Disappear
-        saveBtns[0].transform.parent.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-        CreateSaveTipPanel.SetActive(false);
-    }
-
-    private void OnCSTDetermineBtnClick()
-    {
-        CreateSaveTipPanel.SetActive(false);
-        CreateRolePanel.SetActive(true);
-    }
-
-    private void OnCRPDetermineBtnClick()
-    {
-        string PlayerName = CRP_CreateNameInputField.text;
-        if (PlayerName.Equals(""))
-        {
-            // TODO: 提示模块
-            Debug.Log("请您输入名字");
-        }
-        else
-        {
-            GameInit.Instance.Init(PlayerName, 1, Count);
-
-            GameSaveManager.instance.SaveGame();
-            CreateRolePanel.SetActive(false);
-            CRP_CreateNameInputField.text = "";
-            saveBtns[0].transform.parent.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            // 进行一次存档操作
-            UIPanelManager.Instance.PushPanel(UIPanelType.MainMenu);
-            PlotManager.instance.ShowMain();
         }
     }
 }

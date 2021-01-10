@@ -18,6 +18,11 @@
 		<caption_level1>在高数课上不小心睡着了。</caption_level1>
 		<caption_level2>事先预习了高数，听课时并没有遇到困难。</caption_level2>
 		<caption_level3>解题的时候突然开窍，感觉懂高数了。</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Study_02">
@@ -37,7 +42,12 @@
 		<needCreativity></needCreativity>
 		<caption_level1>外教说了什么完全听不懂。</caption_level1>
 		<caption_level2>在外语课上和老师相谈甚欢，不过用的是中文。</caption_level2>
-		<caption_level3>教外教将中文，成功把外语课变成了中文课。</caption_level3>
+		<caption_level3>教外教讲中文，成功把外语课变成了中文课。</caption_level3>
+		<event_Caption>教会学校里的所有外教讲中文，他们觉得教得非常好。</event_Caption>
+		<option>中文教师</option>
+		<end>成立了一间教室，专门教外国人说中文。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Study_03">
@@ -58,6 +68,11 @@
 		<caption_level1>跑步的时候把拖鞋跑坏了。</caption_level1>
 		<caption_level2>体育测试的时候顺利达到了及格线。</caption_level2>
 		<caption_level3>上完体育课后大汗淋漓，胃口大开，吃了顿好的。</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Study_04">
@@ -78,6 +93,11 @@
 		<caption_level1>画静物的时候把苹果给吃了。</caption_level1>
 		<caption_level2>在美术课上画了很多张速写，削断了两根铅笔。</caption_level2>
 		<caption_level3>美术课上画的素描被当成范例展示了。</caption_level3>
+		<event_Caption>帮已经毕业的学长画了几张画，学长希望我能当他的漫画助手。</event_Caption>
+		<option>漫画</option>
+		<end>开始了漫画助手的工作，盼望着有一天也能出道。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Study_05">
@@ -98,6 +118,11 @@
 		<caption_level1>被辩论的对手放了鸽子。</caption_level1>
 		<caption_level2>参加辩论会，场面十分激烈，差点打了起来。</caption_level2>
 		<caption_level3>参加辩论会，不过在途中变成了几个人一起吃火锅。</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Study_06">
@@ -118,8 +143,108 @@
 		<caption_level1>写的程序里全是bug，改了好久。</caption_level1>
 		<caption_level2>看了很久的编程书，终于找到了需要的解决方案。</caption_level2>
 		<caption_level3>写了一天的程序，没有检查到任何bug。</caption_level3>
+		<event_Caption>因为帮老师写了一个程序，就被推荐去了某家公司实习。</event_Caption>
+		<option>程序员</option>
+		<end>选择成为一名程序员，开始了新的学习。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
-
+	<Action id = "Action_Study_07">
+        <name>公司实习</name>
+        <consume>1</consume>
+        <logic>2</logic>
+        <talk>0</talk>
+        <athletics>0</athletics>
+        <creativity>2</creativity>
+        <money>20</money>
+        <caption></caption>
+		<selfControl>0</selfControl>
+		<successRate>1</successRate>
+		<needLogic>0</needLogic>
+		<needTalk>0</needTalk>
+		<needAthletics>0</needAthletics>
+		<needCreativity>0</needCreativity>
+		<caption_level1>不会失败</caption_level1>
+		<caption_level2>在校外的一家公司进行实习。</caption_level2>
+		<caption_level3>在公司实习的过程中，老板说要加薪</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>18</needMinRound>
+    </Action>
+	<Action id = "Action_Study_08">
+        <name>游戏竞技</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>2</athletics>
+        <creativity>2</creativity>
+        <money>0</money>
+        <caption></caption>
+		<selfControl>0</selfControl>
+		<successRate>1</successRate>
+		<needLogic>0</needLogic>
+		<needTalk>0</needTalk>
+		<needAthletics>0</needAthletics>
+		<needCreativity>0</needCreativity>
+		<caption_level1>不会失败</caption_level1>
+		<caption_level2>很认真地在钻研游戏。</caption_level2>
+		<caption_level3>游戏竞技过程中，幸运地得到了一次和职业选手切磋的机会。</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>18</needMinRound>
+    </Action>
+	<Action id = "Action_Study_09">
+        <name>羽毛球</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>4</athletics>
+        <creativity>0</creativity>
+        <money>0</money>
+        <caption></caption>
+		<selfControl>0</selfControl>
+		<successRate>1</successRate>
+		<needLogic>0</needLogic>
+		<needTalk>0</needTalk>
+		<needAthletics>100</needAthletics>
+		<needCreativity>0</needCreativity>
+		<caption_level1>不会失败</caption_level1>
+		<caption_level2>很积极地在练习羽毛球</caption_level2>
+		<caption_level3>练习了新的羽毛球打法，实力有了较大提升。</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>18</needMinRound>
+    </Action>
+	<Action id = "Action_Study_10">
+        <name>备考</name>
+        <consume>1</consume>
+        <logic>1</logic>
+        <talk>1</talk>
+        <athletics>1</athletics>
+        <creativity>1</creativity>
+        <money>0</money>
+        <caption></caption>
+		<selfControl>0</selfControl>
+		<successRate>1</successRate>
+		<needLogic>100</needLogic>
+		<needTalk>0</needTalk>
+		<needAthletics>0</needAthletics>
+		<needCreativity>0</needCreativity>
+		<caption_level1>不会失败</caption_level1>
+		<caption_level2>为了考研正努力复习中</caption_level2>
+		<caption_level3>今天在图书馆遇见一个心动女生，事半功倍</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>18</needMinRound>
+    </Action>
     <Action id = "Action_Amusement_01">
         <name>推理游戏</name>
         <consume>1</consume>
@@ -138,6 +263,11 @@
 		<caption_level1>在推理游戏中非常不幸地被第一个票出，百口难辩。</caption_level1>
 		<caption_level2>在推理游戏中据理力争，与他人合力找出了真相。</caption_level2>
 		<caption_level3>在推理游戏中巧妙地瞒过了所有人，赢到了最后。</caption_level3>
+		<event_Caption>试着自己编写了一个推理游戏剧本，被某个综艺节目看中了。</event_Caption>
+		<option>推理</option>
+		<end>成为了编剧，开始了更多更优秀的推理剧本的创作。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Amusement_02">
@@ -158,6 +288,11 @@
 		<caption_level1>与卖烧饼的大爷下了一整天象棋，一局都没赢。</caption_level1>
 		<caption_level2>与卖烧饼的大爷下了一整天象棋，最后一局终于和他打成平手。</caption_level2>
 		<caption_level3>与卖烧饼的大爷下了一整天象棋，一局都没输。</caption_level3>
+		<event_Caption>参加了省级的象棋比赛，一路过关斩将取得了优胜。</event_Caption>
+		<option>象棋选手</option>
+		<end>和俱乐部签约，成为了职业的象棋选手。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Amusement_03">
@@ -178,6 +313,11 @@
 		<caption_level1>菜鸟发来了组队邀请，请选择接受或者同意。</caption_level1>
 		<caption_level2>打了一天排名，名次稍微上涨了一些。</caption_level2>
 		<caption_level3>手感大好，在游戏里连连得胜，对手纷纷来求抱大腿。</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Amusement_04">
@@ -198,6 +338,11 @@
 		<caption_level1>踢足球，傻傻分不清自家球门和对方球门。</caption_level1>
 		<caption_level2>踢足球，双方势均力敌，难分胜负。</caption_level2>
 		<caption_level3>足球比赛上不负众望，在最后实现了逆转，赢得了比赛。</caption_level3>
+		<event_Caption>教学校里老师们的孩子踢足球，并且教的还不错。</event_Caption>
+		<option>足球</option>
+		<end>在老师们的帮助下，担任了附近小学的足球教练。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Amusement_05">
@@ -218,6 +363,11 @@
 		<caption_level1>真的被请到河里摸鱼了。</caption_level1>
 		<caption_level2>在被发现了的前一秒停止偷懒，回到了工作中。</caption_level2>
 		<caption_level3>所有人都以为他在认真工作。</caption_level3>
+		<event_Caption>不知道为什么越来越多的人来找我学习摸鱼的技巧。</event_Caption>
+		<option>摸鱼</option>
+		<end>成立了一间教室，专门教人如何在繁重的工作中放松自己。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Amusement_06">
@@ -238,6 +388,11 @@
 		<caption_level1>和社团的朋友对战，一直抽不到核心卡。</caption_level1>
 		<caption_level2>使用新卡组对战，成功打出了预想中的强力组合技。</caption_level2>
 		<caption_level3>新买的卡包里开出了非常稀有的卡片，心情很好。</caption_level3>
+		<event_Caption>设计的卡牌游戏被某厂看中，对方希望能与我合作。</event_Caption>
+		<option>卡牌游戏</option>
+		<end>和厂商签约，开始进一步完善和推广自己制作的游戏。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Amusement_07">
@@ -258,8 +413,36 @@
 		<caption_level1>一直看的小说今天停更了。</caption_level1>
 		<caption_level2>在网上乱逛的时候发现了一本好看的小说。</caption_level2>
 		<caption_level3>休刊三年的作者恢复连载了，简直是奇迹。</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
-
+    <Action id = "Action_Amusement_08">
+        <name>睡觉</name>
+        <consume>1</consume>
+        <logic>0</logic>
+        <talk>0</talk>
+        <athletics>2</athletics>
+        <creativity>0</creativity>
+        <money>0</money>
+        <caption></caption>
+		<selfControl>0</selfControl>
+		<successRate>1</successRate>
+		<needLogic>0</needLogic>
+		<needTalk>0</needTalk>
+		<needAthletics>0</needAthletics>
+		<needCreativity>0</needCreativity>
+		<caption_level1>躺在床上辗转反侧</caption_level1>
+		<caption_level2>非常悠闲地睡觉。</caption_level2>
+		<caption_level3>好像做了个特别有趣的梦。</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
+    </Action>
     <Action id = "Action_Labor_01">
         <name>楼层点名</name>
         <consume>1</consume>
@@ -278,6 +461,11 @@
 		<caption_level1>因为楼层点名不严格被批评了。</caption_level1>
 		<caption_level2>像平常一样去楼层点名。</caption_level2>
 		<caption_level3>楼层点名，所有的宿舍都非常配合。</caption_level3>
+		<event_Caption></event_Caption>
+		<option></option>
+		<end></end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Labor_02">
@@ -298,6 +486,11 @@
 		<caption_level1>临近截稿日，但是一点灵感都没有。</caption_level1>
 		<caption_level2>修改了几次的稿子终于被通过了。</caption_level2>
 		<caption_level3>写的稿子非常有趣，点赞数比以往都多。</caption_level3>
+		<event_Caption>尝试写了些小说，终点中文网希望能签我为写手。</event_Caption>
+		<option>写手</option>
+		<end>成为了职业写手，并且开始了长篇网络小说的创作。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Labor_03">
@@ -318,6 +511,11 @@
 		<caption_level1>剪视频的时候软件崩溃，而且没有保存。</caption_level1>
 		<caption_level2>收集到了很多有趣的视频素材。</caption_level2>
 		<caption_level3>剪的视频上了视频网站的首页推荐。</caption_level3>
+		<event_Caption>做了许多视频，在网络上有了一些粉丝。</event_Caption>
+		<option>视频</option>
+		<end>成为了一名up主，并且有了一批忠实粉丝。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 
     <Action id = "Action_Labor_04">
@@ -338,5 +536,10 @@
 		<caption_level1>参加志愿活动，可惜走错了地方。</caption_level1>
 		<caption_level2>参加志愿活动，和小朋友们愉快地玩耍了一天。</caption_level2>
 		<caption_level3>参加志愿活动，受到了本地电视台的采访。</caption_level3>
+		<event_Caption>参加了许多志愿活动，希望能帮助到其他人。</event_Caption>
+		<option>志愿者</option>
+		<end>参加了一个公益组织，希望能为社会做更多贡献。</end>
+		<needMaxRound>24</needMaxRound>
+		<needMinRound>0</needMinRound>
     </Action>
 </Actions>

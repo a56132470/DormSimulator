@@ -1,40 +1,43 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class StorePanel : BasePanel
+namespace Panel
 {
-    private Button ReturnBtn;
-    private Button SettingBtn;
-
-    public override void Init()
+    public class StorePanel : BasePanel
     {
-        base.Init();
-        canvasGroup = transform.GetComponent<CanvasGroup>();
-        SettingBtn = transform.Find("SettingBtn").GetComponent<Button>();
-        ReturnBtn = transform.Find("ReturnBtn").GetComponent<Button>();
-    }
+        private Button m_ReturnBtn;
+        private Button m_SettingBtn;
 
-    public override void OnEnter()
-    {
-        base.OnEnter();
-        ReturnBtn.onClick.AddListener(OnReturnButtonClick);
-        SettingBtn.onClick.AddListener(OnSettingButtonClick);
-    }
+        public override void Init()
+        {
+            base.Init();
+            CanvasGroup = transform.GetComponent<CanvasGroup>();
+            m_SettingBtn = transform.Find("SettingBtn").GetComponent<Button>();
+            m_ReturnBtn = transform.Find("ReturnBtn").GetComponent<Button>();
+        }
 
-    public override void OnExit()
-    {
-        base.OnExit();
-        ReturnBtn.onClick.RemoveListener(OnReturnButtonClick);
-        SettingBtn.onClick.RemoveListener(OnSettingButtonClick);
-    }
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            m_ReturnBtn.onClick.AddListener(OnReturnButtonClick);
+            m_SettingBtn.onClick.AddListener(OnSettingButtonClick);
+        }
 
-    private void OnReturnButtonClick()
-    {
-        UIPanelManager.Instance.PopPanel();
-    }
+        public override void OnExit()
+        {
+            base.OnExit();
+            m_ReturnBtn.onClick.RemoveListener(OnReturnButtonClick);
+            m_SettingBtn.onClick.RemoveListener(OnSettingButtonClick);
+        }
 
-    private void OnSettingButtonClick()
-    {
-        UIPanelManager.Instance.PushPanel(UIPanelType.Setting);
+        private void OnReturnButtonClick()
+        {
+            UIPanelManager.Instance.PopPanel();
+        }
+
+        private void OnSettingButtonClick()
+        {
+            UIPanelManager.Instance.PushPanel(UIPanelType.Setting);
+        }
     }
 }

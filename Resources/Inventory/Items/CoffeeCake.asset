@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CoffeeCake
   m_EditorClassIdentifier: 
   ItemName: "\u5496\u5561\u86CB\u7CD5"
-  ItemImage: {fileID: 6194269468384116612, guid: 8a2395ba0b6e4e74a94a32733eef8b3d,
+  ItemImage: {fileID: -2789878931737843876, guid: 8c2255a7459fe4c4aa19e00b284233fa,
     type: 3}
   ItemHeld: 1
   ItemPrice: 60

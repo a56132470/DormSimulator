@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: StrawberryCake
   m_EditorClassIdentifier: 
   ItemName: "\u8349\u8393\u86CB\u7CD5"
-  ItemImage: {fileID: 6194269468384116612, guid: 8a2395ba0b6e4e74a94a32733eef8b3d,
+  ItemImage: {fileID: -4120399330518263098, guid: 8c2255a7459fe4c4aa19e00b284233fa,
     type: 3}
   ItemHeld: 1
   ItemPrice: 20
   ItemEffect: "\u4F7F\u7528\u540E\u83B7\u5F97\u72B6\u6001\u3010\u6444\u5165\u7CD6\u5206\u3011"
-  ItemCaption: "\u88AB\u6574\u9F50\u5730\u5207\u6210\u56DB\u5757\u7684\u86CB\u7CD5\u3002"
+  ItemCaption: "\u53EA\u662F\u4E2A\u653E\u4E86\u8349\u8393\u7684\u86CB\u7CD5\u3002"

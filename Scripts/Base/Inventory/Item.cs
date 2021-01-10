@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/New Item")]
-public class Item : ScriptableObject
+namespace Base.Inventory
 {
-    public string ItemName;
-    public Sprite ItemImage;
-    public int ItemHeld;
+    [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/New Item")]
+    public class Item : ScriptableObject
+    {
+        [FormerlySerializedAs("ItemName")] public string itemName;
+        [FormerlySerializedAs("ItemImage")] public Sprite itemImage;
+        [FormerlySerializedAs("ItemHeld")] public int itemHeld;
+    
+        // =9999 则为非卖
+        [FormerlySerializedAs("ItemPrice")] public int itemPrice;
 
-    // =9999 则为非卖
-    public int ItemPrice;
+        [FormerlySerializedAs("ItemEffect")] [TextArea]
+        public string itemEffect;
 
-    [TextArea]
-    public string ItemEffect;
-
-    [TextArea]
-    public string ItemCaption;
+        [TextArea]
+        public string ItemCaption;
+    }
 }

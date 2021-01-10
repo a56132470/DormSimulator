@@ -11,6 +11,7 @@
 		{"panelType":"Player","path":"UIPanel/PlayerPanel"},
 		{"panelType":"Store","path":"UIPanel/StorePanel"},
 		{"panelType":"End","path":"UIPanel/EndPanel"},
-		{"panelType":"Place","path":"UIPanel/PlacePanel"}
+		{"panelType":"Place","path":"UIPanel/PlacePanel"},
+		{"panelType":"Tip","path":"UIPanel/TipPanel"}
 	]
 }

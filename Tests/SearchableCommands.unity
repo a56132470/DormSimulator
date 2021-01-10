@@ -94,8 +94,9 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1217030777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalAxis: Horizontal
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1217030777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
@@ -418,7 +419,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 564
     y: 195
-    width: 120
+    width: 121.2
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -429,6 +430,7 @@ MonoBehaviour:
   commandList:
   - {fileID: 1515680109}
   - {fileID: 1515680108}
+  suppressAllAutoSelections: 0
 --- !u!114 &1515680111
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -755,9 +757,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 230
+    x: 229
     y: 192
-    width: 148.2857
+    width: 153.2
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -774,6 +776,7 @@ MonoBehaviour:
   - {fileID: 1515680115}
   - {fileID: 1515680112}
   - {fileID: 1515680111}
+  suppressAllAutoSelections: 0
 --- !u!114 &1515680120
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -858,7 +861,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 1515680119}
   selectedCommands: []
   variables:
   - {fileID: 1515680123}

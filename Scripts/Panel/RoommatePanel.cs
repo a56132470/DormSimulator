@@ -1,134 +1,164 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class RoommatePanel : BasePanel
+namespace Panel
 {
-    [SerializeField]
-    public Roommate roommate;
-
-    [SerializeField]
-    private GameObject propertyPanel;
-
-    [SerializeField]
-    /// <summary>
-    /// 属性文本
-    /// <para>0:Name</para>
-    /// <para>1:Logic</para>
-    /// <para>2:Talk</para>
-    /// <para>3:Athletics</para>
-    /// <para>4:Creativity</para>
-    /// <para>5:Money</para>
-    /// <para>6:RelationShip</para>
-    /// <para>7:SelfControl</para>
-    /// </summary>
-    private Text[] propertyTxts = new Text[8];
-
-    private Toggle State_Toggle;
-    private Toggle Record_Toggle;
-    private Button Invite_Btn;
-
-    private GameObject StatePage;
-    private GameObject RecordPage;
-    private List<GameObject> recordGams;
-
-    private void Awake()
+    public class RoommatePanel : BasePanel
     {
-    }
+        [SerializeField]
+        private GameObject m_PropertyPanel;
 
-    private void Start()
-    {
-    }
+        public Sprite[] sprites;
+        [FormerlySerializedAs("m_PropertyTxts")] [SerializeField]
+        // 属性文本
+        // 0:Name
+        // 1:Logic
+        // 2:Talk
+        // 3:Athletics
+        // 4:Creativity
+        // 5:Money
+        // 6:RelationShip
+        // 7:SelfControl
+        private Text[] propertyTxts = new Text[8];
 
-    public override void Init()
-    {
-        base.Init();
-        propertyPanel = transform.Find("PropertyPanel").gameObject;
-        propertyTxts = propertyPanel.GetComponentsInChildren<Text>();
-        // 状态,记录单选框
-        State_Toggle = transform.Find("ToggleBtns/StateToggle").GetComponent<Toggle>();
-        Record_Toggle = transform.Find("ToggleBtns/RecordToggle").GetComponent<Toggle>();
-        // 邀请按钮
-        Invite_Btn = transform.Find("ToggleBtns/InviteBtn").GetComponent<Button>();
-        // 状态，记录页面
-        StatePage = transform.Find("Content/StatePage").gameObject;
-        RecordPage = transform.Find("Content/RecordPage").gameObject;
-        recordGams = new List<GameObject>();
-    }
+        private Toggle m_State_Toggle;
+        private Toggle m_Record_Toggle;
+        private Button m_Invite_Btn;
+        private Image m_ProfileImg;
+        private GameObject m_StatePage;
+        private GameObject m_RecordPage;
 
-    public override void OnEnter()
-    {
-        base.OnEnter();
-        State_Toggle.onValueChanged.AddListener(OnStateToggleClick);
-        Record_Toggle.onValueChanged.AddListener(OnRecordToggleClick);
-        Invite_Btn.onClick.AddListener(OnInviteBtnClick);
-    }
+        private int m_Id;
 
-    public override void OnExit()
-    {
-        base.OnExit();
-        State_Toggle.onValueChanged.RemoveListener(OnStateToggleClick);
-        Record_Toggle.onValueChanged.RemoveListener(OnRecordToggleClick);
-        Invite_Btn.onClick.RemoveListener(OnInviteBtnClick);
-    }
 
-    public void InitProperty()
-    {
-        propertyTxts[0].text = roommate.Name;
-        propertyTxts[1].text = "逻辑: " + roommate.Logic.ToString() + " <color=" + "#f2c98a" + ">+" + GlobalVariable.instance.player.LogicBonus + "</color>";
-        propertyTxts[2].text = "言语: " + roommate.Talk.ToString() + " <color=" + "#f2c98a" + ">+" + GlobalVariable.instance.player.TalkBonus + "</color>";
-        propertyTxts[3].text = "体能: " + roommate.Athletics.ToString() + " <color=" + "#f2c98a" + ">+" + GlobalVariable.instance.player.AthleticsBonus + "</color>";
-        propertyTxts[4].text = "灵感: " + roommate.Creativity.ToString() + " <color=" + "#f2c98a" + ">+" + GlobalVariable.instance.player.CreativityBonus + "</color>";
-        propertyTxts[5].text = "零花钱: " + roommate.Money.ToString();
-        propertyTxts[6].text = "亲密度: " + roommate.RelationShip.ToString();
-        propertyTxts[7].text = "自制力: " + roommate.SelfControl.ToString();
-    }
-
-    private void OnStateToggleClick(bool isEnable)
-    {
-        if (isEnable)
+        public override void Init()
         {
-            StatePage.SetActive(true);
-            RecordPage.SetActive(false);
-            StatePage.GetComponent<StateManager>().SetRoommateID(roommate.ID);
+            base.Init();
+            m_ProfileImg = transform.Find("ProfilePanel").GetComponent<Image>();
+            m_PropertyPanel = transform.Find("PropertyPanel").gameObject;
+            propertyTxts = m_PropertyPanel.GetComponentsInChildren<Text>();
+            // 状态,记录单选框
+            m_State_Toggle = transform.Find("ToggleBtns/StateToggle").GetComponent<Toggle>();
+            m_Record_Toggle = transform.Find("ToggleBtns/RecordToggle").GetComponent<Toggle>();
+            // 邀请按钮
+            m_Invite_Btn = transform.Find("ToggleBtns/InviteBtn").GetComponent<Button>();
+            // 状态，记录页面
+            m_StatePage = transform.Find("Content/StatePage").gameObject;
+            m_RecordPage = transform.Find("Content/RecordPage").gameObject;
         }
-    }
 
-    private void OnRecordToggleClick(bool isEnable)
-    {
-        if (isEnable)
+        public override void OnEnter()
         {
-            StatePage.SetActive(false);
-            RecordPage.SetActive(true);
+            base.OnEnter();
+            m_State_Toggle.onValueChanged.AddListener(OnStateToggleClick);
+            m_Record_Toggle.onValueChanged.AddListener(OnRecordToggleClick);
+            m_Invite_Btn.onClick.AddListener(OnInviteBtnClick);
+            EventCenter.AddListener<int>(EventType.REFRESH_ROOMMATE, SetId);
+            EventCenter.AddListener<int>(EventType.REFRESH_ROOMMATE, RefreshInvitationBtn);
+            EventCenter.AddListener<int>(EventType.REFRESH_ROOMMATE, InitProperty);
+            EventCenter.AddListener<int>(EventType.REFRESH_ROOMMATE, RefreshRecordPanel);
+
+
         }
-    }
 
-    private void OnInviteBtnClick()
-    {
-        // TODO:邀请
-        Debug.Log(("已邀请"));
-    }
-
-    public void RefreshRecordPanel()
-    {
-        // 刷新roommate的records
-        if (recordGams.Count < (GlobalVariable.instance.player.CurRound - 1))
+        public override void OnExit()
         {
-            // 如果当前的记录里未更新新的record，则更新record
-            for (int i = recordGams.Count; i < GlobalVariable.instance.player.CurRound - 1; i++)
+            base.OnExit();
+            m_State_Toggle.onValueChanged.RemoveListener(OnStateToggleClick);
+            m_Record_Toggle.onValueChanged.RemoveListener(OnRecordToggleClick);
+            m_Invite_Btn.onClick.RemoveListener(OnInviteBtnClick);
+            EventCenter.RemoveListener<int>(EventType.REFRESH_ROOMMATE, SetId);
+            EventCenter.RemoveListener<int>(EventType.REFRESH_ROOMMATE, InitProperty);
+            EventCenter.RemoveListener<int>(EventType.REFRESH_ROOMMATE, RefreshRecordPanel);
+            EventCenter.RemoveListener<int>(EventType.REFRESH_ROOMMATE, RefreshInvitationBtn);
+        }
+        private void SetId(int ID)
+        {
+            m_Id = ID;
+        }
+        private void InitProperty(int id)
+        {
+            Roommate roommate = GlobalManager.Instance.roommates[id];
+            m_ProfileImg.sprite = sprites[id];
+            propertyTxts[0].text = roommate.Name;
+            propertyTxts[1].text = "逻辑: " + roommate.propertyStruct.Logic + " <color=" + "#f2c98a" + ">+" + roommate.bonus.LogicBonus + "</color>";
+            propertyTxts[2].text = "言语: " + roommate.propertyStruct.Talk + " <color=" + "#f2c98a" + ">+" + roommate.bonus.TalkBonus + "</color>";
+            propertyTxts[3].text = "体能: " + roommate.propertyStruct.Athletics + " <color=" + "#f2c98a" + ">+" + roommate.bonus.AthleticsBonus + "</color>";
+            propertyTxts[4].text = "灵感: " + roommate.propertyStruct.Creativity + " <color=" + "#f2c98a" + ">+" + roommate.bonus.CreativityBonus + "</color>";
+            propertyTxts[5].text = "零花钱: " + roommate.Money;
+            propertyTxts[6].text = "亲密度: " + roommate.RelationShip;
+            propertyTxts[7].text = "自制力: " + roommate.SelfControl;
+        }
+
+        private void OnStateToggleClick(bool isEnable)
+        {
+            if (isEnable)
+            {
+                m_StatePage.SetActive(true);
+                m_RecordPage.SetActive(false);
+            }
+        }
+
+        private void OnRecordToggleClick(bool isEnable)
+        {
+            if (isEnable)
+            {
+                m_StatePage.SetActive(false);
+                m_RecordPage.SetActive(true);
+            }
+        }
+
+        private void OnInviteBtnClick()
+        {
+            // TODO:邀请
+            for (int i = 1; i < 4; i++)
+            {
+                if (GlobalManager.Instance.player.stateDic.ContainsKey(StateName.Help + i))
+                {
+                    GlobalManager.Instance.player.bonus-=(GlobalManager.Instance.player.stateDic[StateName.Help + i].Bonus);
+                    GlobalManager.Instance.player.stateDic.Remove(StateName.Help + i);
+                }
+            }
+            GlobalManager.Instance.player.AddState(StateName.Help + (m_Id + 1));
+            GlobalManager.Instance.Invitation = (m_Id + 1);
+            if (GlobalManager.Instance.Invitation == (m_Id + 1))
+                m_Invite_Btn.interactable = false;
+            else
+                m_Invite_Btn.interactable = true;
+        }
+
+        private void RefreshRecordPanel(int id)
+        {
+            Roommate roommate = GlobalManager.Instance.roommates[id];
+            // 刷新roommate的records
+            for (int i = 0; i < m_RecordPage.transform.Find("Viewport/Content").childCount; i++)
+            {
+                Destroy(m_RecordPage.transform.Find("Viewport/Content").GetChild(i).gameObject);
+            }
+
+            // 更新record
+            for (int i = 0; i < GlobalManager.Instance.player.CurRound - 1; i++)
             {
                 GameObject recordPanel = DSD.KernalTool.LoadPrefabs.GetInstance().GetLoadPrefab("RecordRoundPanel");
                 recordPanel.transform.Find("RoundTitle").GetComponent<Text>().text =
-                    "第" + (i + 1).ToString() + "回合";
+                    "第" + (i + 1) + "回合";
                 Text[] texts = recordPanel.transform.Find("Actions").GetComponentsInChildren<Text>();
-                for (int j = 0; j < 5; j++)
+                for (var j = 0; j < 5; j++)
                 {
                     texts[j].text = roommate.records[i, j];
                 }
-                recordPanel.transform.parent = RecordPage.transform.Find("Viewport/Content");
+                recordPanel.transform.parent = m_RecordPage.transform.Find("Viewport/Content");
                 recordPanel.transform.localScale = Vector3.one;
-                recordGams.Add(recordPanel);
             }
+        }
+        private void RefreshInvitationBtn(int id)
+        {
+            // 已邀请则没法再邀请
+            if (GlobalManager.Instance.Invitation == (id + 1))
+                m_Invite_Btn.interactable = false;
+            else
+                m_Invite_Btn.interactable = true;
         }
     }
 }

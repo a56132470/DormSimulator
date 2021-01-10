@@ -1,47 +1,47 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Base.Inventory;
 using UnityEngine;
-
+using DSD.KernalTool;
 public class GameSaveManager : MonoBehaviour
 {
-    public static GameSaveManager instance;
+    public static GameSaveManager Instance;
     public Inventory storeInventory;
     public Inventory bagInventory;
-    private string path;
+    private string m_Path;
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
             Destroy(this);
     }
 
     private void Start()
     {
-        path = Application.persistentDataPath + "/SaveData";
-        Debug.Log(path);
+        m_Path = Application.persistentDataPath + "/SaveData";
     }
 
     public void SaveGame()
     {
         Debug.Log(Application.persistentDataPath);
-        if (!Directory.Exists(path))
+        if (!Directory.Exists(m_Path))
         {
-            Directory.CreateDirectory(path);
+            Directory.CreateDirectory(m_Path);
         }
 
         SaveInventory(storeInventory);
         SaveInventory(bagInventory);
-        SaveCharacter(GlobalVariable.instance.player, GlobalVariable.instance.SaveID);
-        SaveCharacter(GlobalVariable.instance.roommates[0], GlobalVariable.instance.SaveID, 0);
-        SaveCharacter(GlobalVariable.instance.roommates[1], GlobalVariable.instance.SaveID, 1);
-        SaveCharacter(GlobalVariable.instance.roommates[2], GlobalVariable.instance.SaveID, 2);
+        SaveCharacter(GlobalManager.Instance.player, GlobalManager.Instance.saveId);
+        SaveCharacter(GlobalManager.Instance.roommates[0], GlobalManager.Instance.saveId, 0);
+        SaveCharacter(GlobalManager.Instance.roommates[1], GlobalManager.Instance.saveId, 1);
+        SaveCharacter(GlobalManager.Instance.roommates[2], GlobalManager.Instance.saveId, 2);
     }
 
     private void SaveInventory(Inventory inventory)
     {
-        var inventoryPath = path + "/" + inventory.name + GlobalVariable.instance.SaveID + ".txt";
+        var inventoryPath = m_Path + "/" + inventory.name + GlobalManager.Instance.saveId + ".txt";
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream file = File.Create(inventoryPath);
         var json = JsonUtility.ToJson(inventory);
@@ -52,7 +52,7 @@ public class GameSaveManager : MonoBehaviour
     private void LoadInventory(Inventory inventory)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        var inventoryPath = path + "/" + inventory.name + ".txt";
+        var inventoryPath = m_Path + "/" + inventory.name + ".txt";
         if (File.Exists(inventoryPath))
         {
             FileStream file = File.Open(inventoryPath, FileMode.Open);
@@ -78,19 +78,20 @@ public class GameSaveManager : MonoBehaviour
         LoadInventory(storeInventory);
     }
 
-    // TODO: 舍友的保存有bug，未完成保存
     private void SaveCharacter(BasePerson person, params int[] count)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string realPath = "";
         if (person is Player)
-            realPath = path + "/Player" + count[0].ToString() + ".txt";
+            realPath = m_Path + "/Player" + count[0].ToString() + ".txt";
         else if (person is Roommate)
         {
-            realPath = path + "/Roommate" + count[0].ToString() + count[1].ToString() + ".txt";
+            realPath = m_Path + "/Roommate" + count[0].ToString() + count[1].ToString() + ".txt";
         }
         Stream stream = new FileStream(realPath, FileMode.Create, FileAccess.Write, FileShare.None);
+        SaveTools.Instance.SaveDic(ref person.stateKeys, ref person.stateValues, person.stateDic);
         formatter.Serialize(stream, person);
+        
         stream.Close();
     }
 
@@ -100,11 +101,11 @@ public class GameSaveManager : MonoBehaviour
         string realPath = "";
         if (person is Player)
         {
-            realPath = path + "/Player" + count[0].ToString() + ".txt";
+            realPath = m_Path + "/Player" + count[0].ToString() + ".txt";
         }
         else if (person is Roommate)
         {
-            realPath = path + "/Roommate" + count[0].ToString() + count[1].ToString() + ".txt";
+            realPath = m_Path + "/Roommate" + count[0].ToString() + count[1].ToString() + ".txt";
         }
         if (File.Exists(realPath))
         {
@@ -113,9 +114,10 @@ public class GameSaveManager : MonoBehaviour
             Stream stream = fileStream;
             person = (BasePerson)formatter.Deserialize(stream);
             stream.Close();
+            SaveTools.Instance.LoadDic(person.stateKeys, person.stateValues, ref person.stateDic);
             return person;
         }
-        else
-            return null;
+
+        return null;
     }
 }

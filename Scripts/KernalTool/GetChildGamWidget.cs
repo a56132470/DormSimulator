@@ -13,7 +13,7 @@ namespace DSD.KernalTool
         public static List<Transform> GetChildCollection(this Transform obj)
         {
             List<Transform> list = new List<Transform>();
-            for (int i = 0; i < obj.childCount; i++)
+            for (var i = 0; i < obj.childCount; i++)
             {
                 list.Add(obj.GetChild(i));
             }
@@ -69,13 +69,13 @@ namespace DSD.KernalTool
         /// <returns></returns>
         public static Transform GetRootParent(this Transform obj)
         {
-            Transform Root = obj.parent;
-            while (Root.parent != null)
+            Transform root = obj.parent;
+            while (root.parent != null)
             {
                 //  Root = Root.root    // transform.root 方法可以直接获取最上父节点
-                Root = Root.parent;
+                root = root.parent;
             }
-            return Root;
+            return root;
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace DSD.KernalTool
                     item.FindGameObjectWithTagRecursive(tag, ref transList);
                 }
 
-                if (item.tag == tag)
+                if (item.CompareTag(tag))
                 {
                     transList.Add(item);
                 }

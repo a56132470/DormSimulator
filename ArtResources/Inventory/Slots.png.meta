@@ -1,0 +1,427 @@
+fileFormatVersion: 2
+guid: 8c2255a7459fe4c4aa19e00b284233fa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4120399330518263098
+    second: Slots_0
+  - first:
+      213: 3973670117115425906
+    second: Slots_1
+  - first:
+      213: -7085861625263896070
+    second: Slots_2
+  - first:
+      213: 6109788423898166172
+    second: Slots_3
+  - first:
+      213: 8382754832659277255
+    second: Slots_4
+  - first:
+      213: -6730014451677668174
+    second: Slots_5
+  - first:
+      213: 1687087217237656079
+    second: Slots_6
+  - first:
+      213: -1692687518410529283
+    second: Slots_7
+  - first:
+      213: -5119264307058764885
+    second: Slots_8
+  - first:
+      213: -2789878931737843876
+    second: Slots_9
+  - first:
+      213: 6261799719329407541
+    second: Slots_10
+  - first:
+      213: -3307446982361912897
+    second: Slots_11
+  - first:
+      213: 8273111984537462468
+    second: Slots_12
+  - first:
+      213: -5265063564374339900
+    second: Slots_13
+  - first:
+      213: -8458200264234625734
+    second: Slots_14
+  - first:
+      213: 2735094299480705865
+    second: Slots_15
+  - first:
+      213: 6652337482343385342
+    second: Slots_0
+  - first:
+      213: 109529974007298238
+    second: Slots_1
+  - first:
+      213: -799304000400787349
+    second: Slots_3
+  - first:
+      213: 6225375769246494459
+    second: Slots_5
+  - first:
+      213: -5552319352550169947
+    second: Slots_6
+  - first:
+      213: 3642940985748996527
+    second: Slots_7
+  - first:
+      213: 6365116220390254878
+    second: Slots_8
+  - first:
+      213: 1309975530247342119
+    second: Slots_9
+  - first:
+      213: -5493613658474924813
+    second: Slots_12
+  - first:
+      213: 4566955981423293999
+    second: Slots_14
+  - first:
+      213: 7218897808378053880
+    second: Slots_15
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Slots_0
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1569
+        width: 697
+        height: 596
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef80811d1b9d15c50800000000000000
+      internalID: 6652337482343385342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slots_1
+      rect:
+        serializedVersion: 2
+        x: 2387
+        y: 1582
+        width: 646
+        height: 572
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb876f85ee0258100800000000000000
+      internalID: 109529974007298238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slots_3
+      rect:
+        serializedVersion: 2
+        x: 3286
+        y: 1603
+        width: 670
+        height: 562
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b68ff8c1f3d48e4f0800000000000000
+      internalID: -799304000400787349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slots_5
+      rect:
+        serializedVersion: 2
+        x: 1358
+        y: 1577
+        width: 615
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfee247574af46650800000000000000
+      internalID: 6225375769246494459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slots_7
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 807
+        width: 828
+        height: 711
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa1c74186835e8230800000000000000
+      internalID: 3642940985748996527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slots_8
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 897
+        width: 731
+        height: 607
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1920768a7f655850800000000000000
+      internalID: 6365116220390254878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slots_9
+      rect:
+        serializedVersion: 2
+        x: 2377
+        y: 894
+        width: 570
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 728c8d0edc7fd2210800000000000000
+      internalID: 1309975530247342119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slots_12
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 129
+        width: 811
+        height: 580
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f43e59eb73c2c3b0800000000000000
+      internalID: -5493613658474924813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slots_14
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 47
+        width: 574
+        height: 694
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f26b491b446116f30800000000000000
+      internalID: 4566955981423293999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slots_15
+      rect:
+        serializedVersion: 2
+        x: 2349
+        y: 75
+        width: 621
+        height: 619
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f448323f4dae2460800000000000000
+      internalID: 7218897808378053880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slots_2
+      rect:
+        serializedVersion: 2
+        x: 3330
+        y: 623
+        width: 582
+        height: 545
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9c292f466f9ad90800000000000000
+      internalID: -7085861625263896070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 2f172a318a41157478aa8338d0855b03
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -14,6 +14,21 @@ TextureImporter:
   - first:
       213: -317325375579184759
     second: head_3
+  - first:
+      213: 8573518807881052350
+    second: head_0
+  - first:
+      213: -1704317551936482827
+    second: head_4
+  - first:
+      213: 3757027314003655357
+    second: head_5
+  - first:
+      213: 3446058118091443605
+    second: head_6
+  - first:
+      213: 955033224016222182
+    second: head_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -110,36 +125,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: head_0
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 482
-        height: 704
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: edb914d82746c5060800000000000000
-      internalID: 6943535168657398750
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: head_2
       rect:
         serializedVersion: 2
-        x: 872
-        y: 0
-        width: 422
-        height: 704
+        x: 684
+        y: 397
+        width: 231
+        height: 294
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,12 +149,12 @@ TextureImporter:
       name: head_3
       rect:
         serializedVersion: 2
-        x: 1575
-        y: 0
-        width: 475
-        height: 704
+        x: 994
+        y: 397
+        width: 232
+        height: 296
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,6 +162,132 @@ TextureImporter:
       bones: []
       spriteID: 981a26e8042a89bf0800000000000000
       internalID: -317325375579184759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: head_0
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 397
+        width: 226
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb071ea6ee14bf670800000000000000
+      internalID: 8573518807881052350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: head_1
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 397
+        width: 226
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ba3cd14eaf38250800000000000000
+      internalID: 5945871790718036829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: head_4
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 131
+        width: 127
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f1dc54673c0958e0800000000000000
+      internalID: -1704317551936482827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: head_5
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 131
+        width: 136
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbab0aebf64a32430800000000000000
+      internalID: 3757027314003655357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: head_6
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 131
+        width: 158
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59d0134b99bd2df20800000000000000
+      internalID: 3446058118091443605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: head_7
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 131
+        width: 148
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e7de2248a5f04d00800000000000000
+      internalID: 955033224016222182
       vertices: []
       indices: 
       edges: []

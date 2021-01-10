@@ -1,131 +1,139 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class PlayerPanel : BasePanel
+namespace Panel
 {
-    private GameObject propertyPanel;
-
-    [SerializeField]
-    /// <summary>
-    /// 属性文本
-    /// <para>0:Name</para>
-    /// <para>1:Logic</para>
-    /// <para>2:Talk</para>
-    /// <para>3:Athletics</para>
-    /// <para>4:Creativity</para>
-    /// <para>5:Money</para>
-    /// </summary>
-    private Text[] propertyTxts = new Text[6];
-
-    private Toggle State_Toggle;
-    private Toggle Record_Toggle;
-    private Toggle Goods_Toggle;
-
-    private GameObject StatePage;
-    private GameObject RecordPage;
-    private GameObject GoodsPage;
-    private System.Collections.Generic.List<GameObject> recordGams;
-
-    private void OnStateToggleClick(bool isEnable)
+    public class PlayerPanel : BasePanel
     {
-        if (isEnable)
+        private GameObject m_PropertyPanel;
+
+        [FormerlySerializedAs("m_PropertyTxts")] [SerializeField]
+        /// <summary>
+        /// 属性文本
+        /// <para>0:Name</para>
+        /// <para>1:Logic</para>
+        /// <para>2:Talk</para>
+        /// <para>3:Athletics</para>
+        /// <para>4:Creativity</para>
+        /// <para>5:Money</para>
+        /// </summary>
+        private Text[] propertyTxts = new Text[6];
+
+        private Toggle m_State_Toggle;
+        private Toggle m_Record_Toggle;
+        private Toggle m_Goods_Toggle;
+
+        private GameObject m_StatePage;
+        private GameObject m_RecordPage;
+        private GameObject m_GoodsPage;
+
+        private void OnStateToggleClick(bool isEnable)
         {
-            StatePage.SetActive(true);
-            RecordPage.SetActive(false);
-            GoodsPage.SetActive(false);
-        }
-    }
-
-    private void OnRecordToggleClick(bool isEnable)
-    {
-        if (isEnable)
-        {
-            StatePage.SetActive(false);
-            RecordPage.SetActive(true);
-            GoodsPage.SetActive(false);
-        }
-    }
-
-    private void OnGoodsToggleClick(bool isEnable)
-    {
-        if (isEnable)
-        {
-            StatePage.SetActive(false);
-            RecordPage.SetActive(false);
-            GoodsPage.SetActive(true);
-        }
-    }
-
-    private void InitProperty()
-    {
-        propertyTxts[0].text = GlobalVariable.instance.player.Name;
-        propertyTxts[1].text = "逻辑: " + GlobalVariable.instance.player.Logic.ToString() + " <color=" + "#f2c98a" + ">+" + GlobalVariable.instance.player.LogicBonus + "</color>";
-        propertyTxts[2].text = "言语: " + GlobalVariable.instance.player.Talk.ToString() + " <color=" + "#f2c98a" + ">+" + GlobalVariable.instance.player.TalkBonus + "</color>";
-        propertyTxts[3].text = "体能: " + GlobalVariable.instance.player.Athletics.ToString() + " <color=" + "#f2c98a" + ">+" + GlobalVariable.instance.player.AthleticsBonus + "</color>";
-        propertyTxts[4].text = "灵感: " + GlobalVariable.instance.player.Creativity.ToString() + " <color=" + "#f2c98a" + ">+" + GlobalVariable.instance.player.CreativityBonus + "</color>";
-        propertyTxts[5].text = "零花钱: " + GlobalVariable.instance.player.Money.ToString();
-    }
-
-    public override void Init()
-    {
-        base.Init();
-
-        // 状态,记录,物品单选框
-        State_Toggle = transform.Find("ToggleBtns/StateToggle").GetComponent<Toggle>();
-        Record_Toggle = transform.Find("ToggleBtns/RecordToggle").GetComponent<Toggle>();
-        Goods_Toggle = transform.Find("ToggleBtns/GoodsToggle").GetComponent<Toggle>();
-        // 状态，记录，物品页面
-        StatePage = transform.Find("Content/StatePage").gameObject;
-        RecordPage = transform.Find("Content/RecordPage").gameObject;
-        GoodsPage = transform.Find("Content/GoodsPage").gameObject;
-
-        recordGams = new System.Collections.Generic.List<GameObject>();
-
-        propertyPanel = transform.Find("PropertyPanel").gameObject;
-        propertyTxts = propertyPanel.GetComponentsInChildren<Text>();
-    }
-
-    public override void OnEnter()
-    {
-        base.OnEnter();
-        InitProperty();
-        State_Toggle.onValueChanged.AddListener(OnStateToggleClick);
-        Record_Toggle.onValueChanged.AddListener(OnRecordToggleClick);
-        Goods_Toggle.onValueChanged.AddListener(OnGoodsToggleClick);
-        // RefreshRecordPanel();
-    }
-
-    public override void OnExit()
-    {
-        base.OnExit();
-        State_Toggle.onValueChanged.RemoveListener(OnStateToggleClick);
-        Record_Toggle.onValueChanged.RemoveListener(OnRecordToggleClick);
-        Goods_Toggle.onValueChanged.RemoveListener(OnGoodsToggleClick);
-    }
-
-    public void RefreshRecordPanel()
-    {
-        // player 这里 如果只做了一件事情，那么判断体力是否清空，
-        // 如若清空，则在其余空的地方添加"你没精力做其他事情了"
-        // 如若未清空，则在其余空的
-        // 如果当前的记录里未更新新的record，则更新record
-        for (int i = 0; i < GlobalVariable.instance.player.CurRound - 1; i++)
-        {
-            GameObject recordPanel = DSD.KernalTool.LoadPrefabs.GetInstance().GetLoadPrefab("RecordRoundPanel");
-            recordPanel.transform.Find("RoundTitle").GetComponent<Text>().text =
-                "第" + (i + 1).ToString() + "回合";
-            Text[] texts = recordPanel.transform.Find("Actions").GetComponentsInChildren<Text>();
-            for (int j = 0; j < 5; j++)
+            if (isEnable)
             {
-                if (GlobalVariable.instance.player.records[i, j] != null)
-                    texts[j].text = GlobalVariable.instance.player.records[i, j];
-                else
-                    texts[j].text = "躺了一天，啥也没干";
+                m_StatePage.SetActive(true);
+                m_RecordPage.SetActive(false);
+                m_GoodsPage.SetActive(false);
             }
-            recordPanel.transform.parent = RecordPage.transform.Find("Viewport/Content");
-            recordPanel.transform.localScale = Vector3.one;
-            recordGams.Add(recordPanel);
-            Debug.Log("已添加记录");
+        }
+
+        private void OnRecordToggleClick(bool isEnable)
+        {
+            if (isEnable)
+            {
+                m_StatePage.SetActive(false);
+                m_RecordPage.SetActive(true);
+                m_GoodsPage.SetActive(false);
+            }
+        }
+
+        private void OnGoodsToggleClick(bool isEnable)
+        {
+            if (isEnable)
+            {
+                m_StatePage.SetActive(false);
+                m_RecordPage.SetActive(false);
+                m_GoodsPage.SetActive(true);
+            }
+        }
+
+        private void InitProperty()
+        {
+            propertyTxts[0].text = GlobalManager.Instance.player.Name;
+            propertyTxts[1].text = "逻辑: " + GlobalManager.Instance.player.propertyStruct.Logic + " <color=" + "#f2c98a" + ">+" +
+                                   GlobalManager.Instance.player.bonus.LogicBonus + "</color>";
+            propertyTxts[2].text = "言语: " + GlobalManager.Instance.player.propertyStruct.Talk + " <color=" + "#f2c98a" + ">+" + 
+                                   GlobalManager.Instance.player.bonus.TalkBonus +  "</color>";
+            propertyTxts[3].text = "体能: " + GlobalManager.Instance.player.propertyStruct.Athletics + " <color=" + "#f2c98a" + ">+" +
+                                   GlobalManager.Instance.player.bonus.AthleticsBonus + "</color>";
+            propertyTxts[4].text = "灵感: " + GlobalManager.Instance.player.propertyStruct.Creativity + " <color=" + "#f2c98a" + ">+" +
+                                   GlobalManager.Instance.player.bonus.CreativityBonus + "</color>";
+            propertyTxts[5].text = "零花钱: " + GlobalManager.Instance.player.Money;
+        }
+
+        public override void Init()
+        {
+            base.Init();
+
+            // 状态,记录,物品单选框
+            m_State_Toggle = transform.Find("ToggleBtns/StateToggle").GetComponent<Toggle>();
+            m_Record_Toggle = transform.Find("ToggleBtns/RecordToggle").GetComponent<Toggle>();
+            m_Goods_Toggle = transform.Find("ToggleBtns/GoodsToggle").GetComponent<Toggle>();
+            // 状态，记录，物品页面
+            m_StatePage = transform.Find("Content/StatePage").gameObject;
+            m_RecordPage = transform.Find("Content/RecordPage").gameObject;
+            m_GoodsPage = transform.Find("Content/GoodsPage").gameObject;
+
+            m_PropertyPanel = transform.Find("PropertyPanel").gameObject;
+            propertyTxts = m_PropertyPanel.GetComponentsInChildren<Text>();
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            InitProperty();
+            RefreshRecordPanel();
+            m_State_Toggle.onValueChanged.AddListener(OnStateToggleClick);
+            m_Record_Toggle.onValueChanged.AddListener(OnRecordToggleClick);
+            m_Goods_Toggle.onValueChanged.AddListener(OnGoodsToggleClick);
+        
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            m_State_Toggle.onValueChanged.RemoveListener(OnStateToggleClick);
+            m_Record_Toggle.onValueChanged.RemoveListener(OnRecordToggleClick);
+            m_Goods_Toggle.onValueChanged.RemoveListener(OnGoodsToggleClick);
+        }
+
+        public void RefreshRecordPanel()
+        {
+
+            // 更新record
+
+            for (int i = 0; i < m_RecordPage.transform.Find("Viewport/Content").childCount; i++)
+            {
+                Destroy(m_RecordPage.transform.Find("Viewport/Content").GetChild(i).gameObject);
+            }
+
+            for (int i = 0; i < GlobalManager.Instance.player.CurRound - 1; i++)
+            {
+                GameObject recordPanel = DSD.KernalTool.LoadPrefabs.GetInstance().GetLoadPrefab("RecordRoundPanel");
+                recordPanel.transform.Find("RoundTitle").GetComponent<Text>().text =
+                    "第" + (i + 1).ToString() + "回合";
+                Text[] texts = recordPanel.transform.Find("Actions").GetComponentsInChildren<Text>();
+                for (int j = 0; j < 5; j++)
+                {
+                    if (GlobalManager.Instance.player.records[i, j] != null)
+                        texts[j].text = GlobalManager.Instance.player.records[i, j];
+                    else
+                        texts[j].text = "发呆了一天，啥也没干";
+                }
+                recordPanel.transform.parent = m_RecordPage.transform.Find("Viewport/Content");
+                recordPanel.transform.localScale = Vector3.one;
+            }
         }
     }
 }

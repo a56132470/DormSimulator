@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4886e4b658c739478f3b6eea5ea37bf, type: 3}
+  m_Name: Mask
+  m_EditorClassIdentifier: 
+  ItemName: "\u53E3\u7F69"
+  ItemImage: {fileID: -5119264307058764885, guid: 8c2255a7459fe4c4aa19e00b284233fa,
+    type: 3}
+  ItemHeld: 1
+  ItemPrice: 20
+  ItemEffect: "\u4F7F\u7528\u540E\u83B7\u5F97\u72B6\u6001\u3010\u5065\u5EB7\u51FA\u884C\u3011"
+  ItemCaption: "\u51FA\u95E8\u4E0D\u8981\u5FD8\u4E86\u6234\u53E3\u7F69\u54E6\u3002"

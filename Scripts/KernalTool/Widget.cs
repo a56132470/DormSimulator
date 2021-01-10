@@ -1,42 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
+using Base.ActionSystem;
+using Base.Struct;
 
 namespace DSD.KernalTool
 {
     public static partial class Widget
     {
-        /// <summary>
-        /// 随机获取三个字的名字
-        /// </summary>
-        /// <returns></returns>
-        public static string GetChineseName()
-        {
-            string name = "";
-            string[] firstName = new string[]{
-            "白","毕","卞","蔡","曹","岑","常","车","陈","成" ,"程","池","邓","丁","范","方","樊","闫","倪","周",
-            "费","冯","符","元","袁","岳","云","曾","詹","张","章","赵","郑" ,"钟","周","邹","朱","褚","庄","卓"
-           ,"傅","甘","高","葛","龚","古","关","郭","韩","何" ,"贺","洪","侯","胡","华","黄","霍","姬","简","江"
-           ,"姜","蒋","金","康","柯","孔","赖","郎","乐","雷" ,"黎","李","连","廉","梁","廖","林","凌","刘","柳"
-           ,"龙","卢","鲁","陆","路","吕","罗","骆","马","梅" ,"孟","莫","母","穆","倪","宁","欧","区","潘","彭"
-           ,"蒲","皮","齐","戚","钱","强","秦","丘","邱","饶" ,"任","沈","盛","施","石","时","史","司徒","苏","孙"
-           ,"谭","汤","唐","陶","田","童","涂","王","危","韦" ,"卫","魏","温","文","翁","巫","邬","吴","伍","武"
-           ,"席","夏","萧","谢","辛","邢","徐","许","薛","严" ,"颜","杨","叶","易","殷","尤","于","余","俞","虞"
-           };
-
-            string lastName = "震南洛栩嘉光琛潇闻鹏宇斌威汉火科技梦琪忆柳之召腾飞慕青问兰尔岚元香初夏沛菡傲珊曼文乐菱痴珊恨玉惜香寒新柔语蓉海安夜蓉涵柏水桃醉蓝春语琴从彤" +
-                "傲晴语菱碧彤元霜怜梦紫寒妙彤曼易南莲紫翠雨寒易烟如萱若南寻真晓亦向珊慕灵以蕊寻雁映易雪柳孤岚笑霜海云凝天沛珊寒云冰旋宛儿" +
-                "绿真盼晓霜碧凡夏菡曼香若烟半梦雅绿冰蓝灵槐平安书翠翠风香巧代云梦曼幼翠友巧听寒梦柏醉易访旋亦玉凌萱访卉怀亦笑蓝春翠靖柏夜蕾" +
-                "冰夏梦松书雪乐枫念薇靖雁寻春恨山从寒忆香觅波静曼凡旋以亦念露芷蕾千帅新波代真新蕾雁玉冷卉紫千琴恨天傲芙盼山怀蝶冰山柏翠萱恨松问旋" +
-                "南白易问筠如霜半芹丹珍冰彤亦寒寒雁怜云寻文乐丹翠柔谷山之瑶冰露尔珍谷雪乐萱涵菡海莲傲蕾青槐洛冬易梦惜雪宛海之柔夏青妙菡春竹痴梦紫蓝晓巧幻柏" +
-                "元风冰枫访蕊南春芷蕊凡蕾凡柔安蕾天荷含玉书雅琴书瑶春雁从安夏槐念芹怀萍代曼幻珊谷丝秋翠白晴海露代荷含玉书蕾听访琴灵雁秋春雪青乐瑶含烟涵双" +
-                "平蝶雅蕊傲之灵薇绿春含蕾梦蓉初丹听听蓉语芙夏彤凌瑶忆翠幻灵怜菡紫南依珊妙竹访烟怜蕾映寒友绿冰萍惜霜凌香芷蕾雁卉迎梦元柏代萱紫真千青凌寒" +
-                "紫安寒安怀蕊秋荷涵雁以山凡梅盼曼翠彤谷新巧冷安千萍冰烟雅友绿南松诗云飞风寄灵书芹幼蓉以蓝笑寒忆寒秋烟芷巧水香映之醉波幻莲夜山芷卉向彤小玉幼";
-
-            name = firstName[Random.Range(0, firstName.Length - 1)]
-                 + lastName[Random.Range(0, lastName.Length - 1)]
-                 + lastName[Random.Range(0, lastName.Length - 1)];
-            return name;
-        }
-
         /// <summary>
         /// 在total个连续数字里取n个不重复数字，并返回不重复数字数组
         /// </summary>
@@ -87,35 +58,39 @@ namespace DSD.KernalTool
         {
             float successRate = 0;
             int index = 0;
-            if (action.NeedAthletics != 0)
+            // TODO:因为要交毕设而先让其勉强能运行，之后还需要改
+            if (action.NeedProperty.Athletics != 0)
+            {
+                index++;
+                successRate = successRate + (action.SuccessRate +
+                            ((person.propertyStruct.Athletics - action.NeedProperty.Athletics) /
+                             (person.propertyStruct.Athletics + action.NeedProperty.Athletics)));
+            }
+            if (action.NeedProperty.Creativity != 0)
             {
                 index++;
                 successRate += action.SuccessRate +
-                     ((person.Athletics - action.NeedAthletics) /
-                     (person.Athletics + action.NeedAthletics));
+                     ((person.propertyStruct.Creativity - action.NeedProperty.Creativity) /
+                     (person.propertyStruct.Creativity + action.NeedProperty.Creativity));
             }
-            if (action.NeedCreativity != 0)
+            if (action.NeedProperty.Logic != 0)
             {
                 index++;
                 successRate += action.SuccessRate +
-                     ((person.Creativity - action.NeedCreativity) /
-                     (person.Creativity + action.NeedCreativity));
+                     ((person.propertyStruct.Logic - action.NeedProperty.Logic) /
+                     (person.propertyStruct.Logic + action.NeedProperty.Logic));
             }
-            if (action.NeedLogic != 0)
+            if (action.NeedProperty.Talk != 0)
             {
                 index++;
                 successRate += action.SuccessRate +
-                     ((person.Logic - action.NeedLogic) /
-                     (person.Logic + action.NeedLogic));
+                     ((person.propertyStruct.Talk - action.NeedProperty.Talk) /
+                     (person.propertyStruct.Talk + action.NeedProperty.Talk));
             }
-            if (action.NeedTalk != 0)
-            {
-                index++;
-                successRate += action.SuccessRate +
-                     ((person.Talk - action.NeedTalk) /
-                     (person.Talk + action.NeedTalk));
-            }
-            successRate = successRate / index;
+            if (index != 0)
+                successRate /= index;
+            else
+                successRate = 1;
             if (successRate > 0)
             {
                 // 成功
@@ -132,31 +107,35 @@ namespace DSD.KernalTool
         {
             float successRate = 0;
             int index = 0;
-            if (action.NeedAthletics != 0)
+            // TODO:因为要交光盘所以先临时让其可以运行，之后还需再改，改得通用一些
+            if (action.NeedProperty.Athletics != 0)
             {
                 index++;
-                successRate += person.Athletics /
-                    (person.Athletics + action.NeedAthletics);
+                successRate += person.propertyStruct.Athletics /
+                    (person.propertyStruct.Athletics + action.NeedProperty.Athletics);
             }
-            if (action.NeedCreativity != 0)
+            if (action.NeedProperty.Creativity != 0)
             {
                 index++;
-                successRate += person.Creativity /
-                    (person.Creativity + action.NeedCreativity);
+                successRate += person.propertyStruct.Creativity /
+                    (person.propertyStruct.Creativity + action.NeedProperty.Creativity);
             }
-            if (action.NeedLogic != 0)
+            if (action.NeedProperty.Logic != 0)
             {
                 index++;
-                successRate += person.Logic /
-                    (person.Logic + action.NeedLogic);
+                successRate += person.propertyStruct.Logic /
+                    (person.propertyStruct.Logic + action.NeedProperty.Logic);
             }
-            if (action.NeedTalk != 0)
+            if (action.NeedProperty.Talk != 0)
             {
                 index++;
-                successRate += person.Talk /
-                    (person.Talk + action.NeedTalk);
+                successRate += person.propertyStruct.Talk /
+                    (person.propertyStruct.Talk + action.NeedProperty.Talk);
             }
-            successRate = successRate / index;
+            if (index != 0)
+                successRate /= index;
+            else
+                successRate = 1;
             if (successRate > 0)
             {
                 // 大成功
@@ -167,6 +146,82 @@ namespace DSD.KernalTool
                 // 成功
                 return false;
             }
+        }
+        /// <summary>
+        /// 根据当前选择的action为player加属性
+        /// 在舍友不会自己获取状态的时候，就全部用玩家的属性加成
+        /// </summary>
+        public static void AddProperty(BasePerson person,CharacterAction action)
+        {
+            // 是玩家
+            if(person.GetType()==GlobalManager.Instance.player.GetType())
+            {
+                if (!action.EventCaption.Equals(""))
+                    action.Count[0]++;
+            }
+            else
+            {
+                if (person.Name == GlobalManager.Instance.roommates[0].Name)
+                {
+                    if (!action.EventCaption.Equals(""))
+                        action.Count[1]++;
+                }
+                else if (person.Name == GlobalManager.Instance.roommates[1].Name)
+                {
+                    if (!action.EventCaption.Equals(""))
+                        action.Count[2]++;
+                }
+                else if (person.Name == GlobalManager.Instance.roommates[2].Name)
+                {
+                    if (!action.EventCaption.Equals(""))
+                        action.Count[3]++;
+                }
+            }
+
+            float multiple;
+            int promote_Money;
+            PropertyStruct promoteProperty = new PropertyStruct(0,0,0,0);
+            promoteProperty += action.Property;
+            promoteProperty += GlobalManager.Instance.player.bonus;
+
+            promote_Money = action.Money;
+            if (JudgingFirstSuccess(action, person))
+            {
+                multiple = 1;
+                person.AddRecordAction(action.Captions[1]);
+                if (JudgingSecondSuccess(action, person))
+                {
+                    multiple = 2;
+                    person.AddRecordAction(action.Captions[2]);
+                }
+            }
+            else
+            {
+                multiple = 0.5f;
+                person.AddRecordAction(action.Captions[0]);
+            }
+
+            promoteProperty *= multiple;
+            person.propertyStruct += promoteProperty;
+            person.Money += (int)ChinaRound(promote_Money * multiple, 0);
+
+        }
+        public static void DictionarySort(Dictionary<CharacterAction,int>dic,ref Dictionary<CharacterAction,int> refDic)
+        {
+            refDic = dic.OrderByDescending(o => o.Value).ToDictionary(o => o.Key, p => p.Value);
+        }
+        public static void RemoveInivitationState()
+        {
+
+            for (int i = 1; i < 4; i++)
+            {
+                if (GlobalManager.Instance.player.stateDic.ContainsKey(StateName.Help + i))
+                {
+                    GlobalManager.Instance.player.bonus-=(GlobalManager.Instance.player.stateDic[StateName.Help + i].Bonus);
+                    GlobalManager.Instance.player.stateDic.Remove(StateName.Help + i);
+                }
+            }
+            GlobalManager.Instance.Invitation = 0;
         }
     }
 }

@@ -1,60 +1,79 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <Topics>
 	<Topic>
-		<TopicName>激情</TopicName>
+		<TopicName>大小姐</TopicName>
 		<Plot>
-			<needLogic>50</needLogic>
-			<needTalk>50</needTalk>
+			<needLogic>0</needLogic>
+			<needTalk>0</needTalk>
 			<needAthletics></needAthletics>
 			<needCreativity></needCreativity>
 			<needState></needState>
 			<needSlot></needSlot>
-			<place>Park</place>
+			<needMaxRound>24</needMaxRound>
+			<needMinRound>7</needMinRound>
+			<place>Dorm</place>
+			<needRelationShip>0</needRelationShip>
 		</Plot>
 		<Plot>
-			<needLogic>80</needLogic>
-			<needTalk>80</needTalk>
+			<needLogic>0</needLogic>
+			<needTalk>0</needTalk>
 			<needAthletics></needAthletics>
 			<needCreativity></needCreativity>
 			<needState></needState>
 			<needSlot></needSlot>
-			<place>Park</place>
+			<needMaxRound>24</needMaxRound>
+			<needMinRound>7</needMinRound>
+			<place>Dorm</place>
+			<needRelationShip>0</needRelationShip>
 		</Plot>
 		<Plot>
-			<needLogic>100</needLogic>
-			<needTalk>100</needTalk>
+			<needLogic>0</needLogic>
+			<needTalk>0</needTalk>
 			<needAthletics></needAthletics>
 			<needCreativity></needCreativity>
 			<needState></needState>
 			<needSlot></needSlot>
-			<place>Garden</place>
+			<needMaxRound>24</needMaxRound>
+			<needMinRound>7</needMinRound>
+			<place>Dorm</place>
+			<needRelationShip>0</needRelationShip>
 		</Plot>
 		<Plot>
-			<needLogic>120</needLogic>
-			<needTalk>120</needTalk>
+			<needLogic>0</needLogic>
+			<needTalk>0</needTalk>
 			<needAthletics></needAthletics>
 			<needCreativity></needCreativity>
 			<needState></needState>
 			<needSlot></needSlot>
-			<place>Park</place>
+			<needMaxRound>24</needMaxRound>
+			<needMinRound>7</needMinRound>
+			<place>Dorm</place>
+			<needRelationShip>0</needRelationShip>
 		</Plot>
 		<Plot>
-			<needLogic>150</needLogic>
-			<needTalk>150</needTalk>
+			<needLogic>0</needLogic>
+			<needTalk>0</needTalk>
 			<needAthletics></needAthletics>
 			<needCreativity></needCreativity>
 			<needState></needState>
 			<needSlot></needSlot>
-			<place>Park</place>
+			<needMaxRound>24</needMaxRound>
+			<needMinRound>7</needMinRound>
+			<place>Dorm</place>
+			<needRelationShip>60</needRelationShip>
+			
 		</Plot>
 		<Plot>
-			<needLogic>180</needLogic>
-			<needTalk>180</needTalk>
+			<needLogic>0</needLogic>
+			<needTalk>0</needTalk>
 			<needAthletics></needAthletics>
 			<needCreativity></needCreativity>
 			<needState></needState>
 			<needSlot></needSlot>
-			<place>Garden</place>
+			<needMaxRound>24</needMaxRound>
+			<needMinRound>7</needMinRound>
+			<place>Dorm</place>
+			<needRelationShip>80</needRelationShip>
 		</Plot>
 	</Topic>
 </Topics>

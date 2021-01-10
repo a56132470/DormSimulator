@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory/New Inventory")]
-public class Inventory : ScriptableObject
+namespace Base.Inventory
 {
-    public List<Item> itemList;
+    [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory/New Inventory")]
+    public class Inventory : ScriptableObject
+    {
+        public List<Item> itemList;
+    }
 }

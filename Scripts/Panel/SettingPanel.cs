@@ -1,47 +1,58 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingPanel : BasePanel
+namespace Panel
 {
-    private Button ReturnBtn;
-    private Slider musicVolumeSlider;
-    private Slider musicEffectVolumeSlider;
-
-    public override void Init()
+    public class SettingPanel : BasePanel
     {
-        base.Init();
-        ReturnBtn = transform.Find("ReturnBtn").GetComponent<Button>();
+        private Button m_ReturnBtn;
+        private Slider m_MusicVolumeSlider;
+        private Slider musicEffectVolumeSlider;
 
-        musicVolumeSlider = transform.Find("Panel/MusicVolume/Slider").GetComponent<Slider>();
-        musicEffectVolumeSlider = transform.Find("Panel/SoundEffectVolume/Slider").GetComponent<Slider>();
-    }
+        public override void Init()
+        {
+            base.Init();
+            m_ReturnBtn = transform.Find("ReturnBtn").GetComponent<Button>();
 
-    public override void OnEnter()
-    {
-        base.OnEnter();
-        ReturnBtn.gameObject.SetActive(!UIPanelManager.Instance.GetPanel(UIPanelType.GameStart).gameObject.activeSelf);
-        ReturnBtn.onClick.AddListener(OnReturnBtnClick);
-        musicVolumeSlider.onValueChanged.AddListener(ChangeMusicVolume);
-    }
+            m_MusicVolumeSlider = transform.Find("Panel/MusicVolume/Slider").GetComponent<Slider>();
+            musicEffectVolumeSlider = transform.Find("Panel/SoundEffectVolume/Slider").GetComponent<Slider>();
+        }
 
-    public override void OnExit()
-    {
-        base.OnExit();
-        ReturnBtn.onClick.RemoveListener(OnReturnBtnClick);
-        musicVolumeSlider.onValueChanged.RemoveListener(ChangeMusicVolume);
-    }
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            //if (UIPanelManager.Instance.GetComponentInChildren<SavePanel>()
+            //    && UIPanelManager.Instance.GetComponentInChildren<GameStartPanel>())
+            //{
+            //    ReturnBtn.gameObject.SetActive(!UIPanelManager.Instance.GetPanel(UIPanelType.GameStart).gameObject.activeSelf
+            //    && !UIPanelManager.Instance.GetPanel(UIPanelType.Save).gameObject.activeSelf);
+            //}
+            //else
+            //    ReturnBtn.gameObject.SetActive(false);
+        
+            m_ReturnBtn.onClick.AddListener(OnReturnBtnClick);
+            m_MusicVolumeSlider.onValueChanged.AddListener(ChangeMusicVolume);
+        }
 
-    private void OnReturnBtnClick()
-    {
-        //返回主界面自动保存
-        GameSaveManager.instance.SaveGame();
-        UIPanelManager.Instance.PopPanel();
-        UIPanelManager.Instance.PopPanel();
-    }
+        public override void OnExit()
+        {
+            base.OnExit();
+            m_ReturnBtn.onClick.RemoveListener(OnReturnBtnClick);
+            m_MusicVolumeSlider.onValueChanged.RemoveListener(ChangeMusicVolume);
+        }
 
-    private void ChangeMusicVolume(float value)
-    {
-        GameObject MusicGam = GameObject.Find("Function").gameObject;
-        MusicGam.GetComponent<AudioSource>().volume = (value / 4);
+        private void OnReturnBtnClick()
+        {
+            //返回主界面自动保存
+            GameSaveManager.Instance.SaveGame();
+            UIPanelManager.Instance.PopPanel();
+            UIPanelManager.Instance.PopPanel();
+        }
+
+        private void ChangeMusicVolume(float value)
+        {
+            GameObject musicGam = GameObject.Find("Function").gameObject;
+            musicGam.GetComponent<AudioSource>().volume = (value / 4);
+        }
     }
 }

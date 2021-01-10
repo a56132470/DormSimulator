@@ -1,296 +1,323 @@
 ﻿using System.Collections.Generic;
+using Base.ActionSystem;
+using Base.PlotSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ActionPanel : BasePanel
+namespace Panel
 {
-    private GameObject switchRoundPanel_Gam;
-    private SwitchRound switchRound_Component;
-
-    // 行动页面
-    private GameObject ActionPage;
-
-    // 三个按钮框，都遵循网格布局，在Start里直接生成按钮在其中
-    // 学习按钮框
-    private GameObject StudyBtn_Gam;
-
-    // 娱乐按钮框
-    private GameObject AmusementBtn_Gam;
-
-    // 劳动按钮框
-    private GameObject LaborBtn_Gam;
-
-    private List<GameObject> actionBtns_ListGams;
-
-    // 说明文本
-    private GameObject Caption_Gam;
-
-    // 消耗体力文本
-    private GameObject Consume_Gam;
-
-    // 事件页面
-    private GameObject PlotPage;
-
-    private TopicPanel[] topicPanels;
-
-    // 两个单选按钮
-
-    // 行动单选框
-    private Toggle Action_Toggle;
-
-    // 事件单选框
-    private Toggle Plot_Toggle;
-
-    // 已选择的行动列表框
-    private GameObject ActionListPanel;
-
-    // 行动列表框按钮们的transform，通过transform获取gameobject
-    public static SelectedActionButton[] ActionListBtns;
-
-    // 确定执行的下一回合按钮
-    private GameObject NextRoundBtn;
-
-    private CharacterAction CurrentSelect_Action;
-
-    private void Start()
+    public class ActionPanel : BasePanel
     {
-        InitAction();
-    }
+        private GameObject m_SwitchRoundPanel_Gam;
+        private SwitchRound m_SwitchRound_Component;
 
-    public override void OnEnter()
-    {
-        base.OnEnter();
-        // 绑定事件
-        Action_Toggle.onValueChanged.AddListener(OnActionToggleClick);
-        Plot_Toggle.onValueChanged.AddListener(OnPlotToggleClick);
-        NextRoundBtn.GetComponent<Button>().onClick.AddListener(OnNextRoundBtnClick);
-    }
+        // 行动页面
+        private GameObject m_ActionPage;
 
-    public override void OnExit()
-    {
-        base.OnExit();
-        // 解绑事件
-        Action_Toggle.onValueChanged.RemoveListener(OnActionToggleClick);
-        Plot_Toggle.onValueChanged.RemoveListener(OnPlotToggleClick);
-        NextRoundBtn.GetComponent<Button>().onClick.RemoveListener(OnNextRoundBtnClick);
-    }
+        // 三个按钮框，都遵循网格布局，在Start里直接生成按钮在其中
+        // 学习按钮框
+        private GameObject m_StudyBtn_Gam;
 
-    public override void OnResume()
-    {
-        base.OnResume();
-        Caption_Gam.GetComponent<Text>().text = "";
-        RefreshPlotPanel();
-    }
+        // 娱乐按钮框
+        private GameObject m_AmusementBtn_Gam;
 
-    /// <summary>
-    /// 初始化，绑定物体绑定事件
-    /// </summary>
-    public override void Init()
-    {
-        base.Init();
+        // 劳动按钮框
+        private GameObject m_LaborBtn_Gam;
 
-        // 行动和事件单选框
-        Action_Toggle = transform.Find("Toggles/ActionToggle").GetComponent<Toggle>();
-        Plot_Toggle = transform.Find("Toggles/PlotToggle").GetComponent<Toggle>();
+        private List<GameObject> m_ActionBtns_ListGams;
 
-        // 行动和事件页面
-        ActionPage = transform.Find("Content/ActionPage").gameObject;
-        PlotPage = transform.Find("Content/PlotPage").gameObject;
+        // 说明文本
+        private GameObject m_Caption_Gam;
 
-        // 情节面板
-        topicPanels = PlotPage.GetComponentsInChildren<TopicPanel>();
+        // 消耗体力文本
+        private GameObject m_Consume_Gam;
 
-        // 学习，娱乐，劳动按钮列表
-        StudyBtn_Gam = ActionPage.transform.Find("ActionScrollView/Viewport/Content/Study").gameObject;
-        AmusementBtn_Gam = ActionPage.transform.Find("ActionScrollView/Viewport/Content/Amusement").gameObject;
-        LaborBtn_Gam = ActionPage.transform.Find("ActionScrollView/Viewport/Content/Labor").gameObject;
+        // 事件页面
+        private GameObject m_PlotPage;
 
-        // 描述，消耗体力，确定选择按钮
-        Caption_Gam = ActionPage.transform.Find("Caption").gameObject;
-        Consume_Gam = ActionPage.transform.Find("Consume").gameObject;
+        private TopicPanel[] m_TopicPanels;
 
-        // 行动列表框
-        ActionListPanel = ActionPage.transform.Find("ActionList").gameObject;
-        ActionListBtns = ActionListPanel.transform.Find("Action").GetComponentsInChildren<SelectedActionButton>();
-        NextRoundBtn = ActionListPanel.transform.Find("NextRoundBtn").gameObject;
+        // 两个单选按钮
 
-        // 切换回合
-        switchRoundPanel_Gam = transform.Find("SwitchRoundPanel").gameObject;
-        switchRound_Component = switchRoundPanel_Gam.GetComponent<SwitchRound>();
+        // 行动单选框
+        private Toggle m_Action_Toggle;
 
-        actionBtns_ListGams = new List<GameObject>();
+        // 事件单选框
+        private Toggle m_Plot_Toggle;
 
-        if (ActionPage.activeSelf)
+        // 已选择的行动列表框
+        private GameObject m_ActionListPanel;
+
+        // 行动列表框按钮们的transform，通过transform获取gameobject
+        private static SelectedActionButton[] ActionListBtns;
+
+        // 确定执行的下一回合按钮
+        private GameObject m_NextRoundBtn;
+
+        private CharacterAction m_CurrentSelect_Action;
+
+        public override void OnEnter()
         {
-            ToggleFade(Plot_Toggle, Action_Toggle);
+            base.OnEnter();
+            // 绑定事件
+            m_Action_Toggle.onValueChanged.AddListener(OnActionToggleClick);
+            m_Plot_Toggle.onValueChanged.AddListener(OnPlotToggleClick);
+            m_NextRoundBtn.GetComponent<Button>().onClick.AddListener(OnNextRoundBtnClick);
+            EventCenter.AddListener<string, string>(EventType.UPDATE_ACTIONCAPTION, UpdateConsumeAndCaption);
+            EventCenter.AddListener(EventType.UPDATE_ACTIONPANEL_EVENT, RefreshPlotPanel);
         }
-        else if (PlotPage.activeSelf)
+
+        public override void OnExit()
         {
-            ToggleFade(Action_Toggle, Plot_Toggle);
+            base.OnExit();
+            // 解绑事件
+            m_Action_Toggle.onValueChanged.RemoveListener(OnActionToggleClick);
+            m_Plot_Toggle.onValueChanged.RemoveListener(OnPlotToggleClick);
+            m_NextRoundBtn.GetComponent<Button>().onClick.RemoveListener(OnNextRoundBtnClick);
+            EventCenter.RemoveListener<string, string>(EventType.UPDATE_ACTIONCAPTION, UpdateConsumeAndCaption);
+            EventCenter.RemoveListener(EventType.UPDATE_ACTIONPANEL_EVENT, RefreshPlotPanel);
         }
-        for (int i = 0; i < ActionListBtns.Length; i++)
+
+        public override void OnResume()
         {
-            ActionListBtns[i].consume = Consume_Gam.GetComponent<Text>();
-            ActionListBtns[i].caption = Caption_Gam.GetComponent<Text>();
+            base.OnResume();
+            m_Caption_Gam.GetComponent<Text>().text = "";
+            EventCenter.Broadcast(EventType.UPDATE_ACTIONPANEL_EVENT);
         }
-        for (int i = 0; i < topicPanels.Length; i++)
+
+        /// <summary>
+        /// 初始化，绑定物体绑定事件
+        /// </summary>
+        public override void Init()
         {
-            // TODO:当前只有1个topic
-            topicPanels[i].SetTopic(XMLManager.Instance.topicList[0]);
-        }
-    }
+            base.Init();
 
-    private void OnActionToggleClick(bool isEnable)
-    {
-        if (isEnable)
-        {
-            ToggleFade(Plot_Toggle, Action_Toggle);
-            ActionPage.SetActive(true);
-            PlotPage.SetActive(false);
-        }
-    }
+            // 行动和事件单选框
+            m_Action_Toggle = transform.Find("Toggles/ActionToggle").GetComponent<Toggle>();
+            m_Plot_Toggle = transform.Find("Toggles/PlotToggle").GetComponent<Toggle>();
 
-    private void OnPlotToggleClick(bool isEnable)
-    {
-        if (isEnable)
-        {
-            ToggleFade(Action_Toggle, Plot_Toggle);
-            ActionPage.SetActive(false);
-            PlotPage.SetActive(true);
-            RefreshPlotPanel();
-        }
-    }
+            // 行动和事件页面
+            m_ActionPage = transform.Find("Content/ActionPage").gameObject;
+            m_PlotPage = transform.Find("Content/PlotPage").gameObject;
 
-    /// <summary>
-    /// Toggle变暗的函数
-    /// </summary>
-    /// <param name="toggleA">要变暗的Toggle</param>
-    /// <param name="toggleB">被点击而恢复的Toggle</param>
-    private void ToggleFade(Toggle toggleA, Toggle toggleB)
-    {
-        ColorBlock cb = toggleB.colors;
-        cb.normalColor = toggleB.colors.pressedColor;
-        toggleA.colors = cb;
-        cb.normalColor = Color.white;
-        toggleB.colors = cb;
-    }
+            // 情节面板
+            m_TopicPanels = m_PlotPage.GetComponentsInChildren<TopicPanel>();
 
-    public void RefreshPlotPanel()
-    {
-        for (int i = 0; i < topicPanels.Length; i++)
-        {
-            topicPanels[i].Refresh();
-        }
-    }
+            // 学习，娱乐，劳动按钮列表
+            m_StudyBtn_Gam = m_ActionPage.transform.Find("ActionScrollView/Viewport/Content/Study").gameObject;
+            m_AmusementBtn_Gam = m_ActionPage.transform.Find("ActionScrollView/Viewport/Content/Amusement").gameObject;
+            m_LaborBtn_Gam = m_ActionPage.transform.Find("ActionScrollView/Viewport/Content/Labor").gameObject;
 
-    private ActionType type;
+            // 描述，消耗体力，确定选择按钮
+            m_Caption_Gam = m_ActionPage.transform.Find("Caption").gameObject;
+            m_Consume_Gam = m_ActionPage.transform.Find("Consume").gameObject;
 
-    /// <summary>
-    /// 根据ActionManager加载的xml数据生成按钮并放置于面板中
-    /// </summary>
-    private void InitAction()
-    {
-        int index = 0;
+            // 行动列表框
+            m_ActionListPanel = m_ActionPage.transform.Find("ActionList").gameObject;
+            ActionListBtns = m_ActionListPanel.transform.Find("Action").GetComponentsInChildren<SelectedActionButton>();
+            m_NextRoundBtn = m_ActionListPanel.transform.Find("NextRoundBtn").gameObject;
 
-        while (index < XMLManager.Instance.actionList.Count)
-        {
-            type = XMLManager.Instance.actionList[index].Type;
-            GameObject btn;
-            switch (type)
+            // 切换回合
+            m_SwitchRoundPanel_Gam = transform.Find("SwitchRoundPanel").gameObject;
+            m_SwitchRound_Component = m_SwitchRoundPanel_Gam.GetComponent<SwitchRound>();
+
+            m_ActionBtns_ListGams = new List<GameObject>();
+
+            if (m_ActionPage.activeSelf)
             {
-                case ActionType.Study:
-                    btn = DSD.KernalTool.LoadPrefabs.GetInstance().GetLoadPrefab("StudyBtn");
-                    btn.transform.parent = StudyBtn_Gam.transform;
-                    break;
-
-                case ActionType.Amusement:
-                    btn = DSD.KernalTool.LoadPrefabs.GetInstance().GetLoadPrefab("AmusementBtn");
-                    btn.transform.parent = AmusementBtn_Gam.transform;
-                    break;
-
-                case ActionType.Labor:
-                    btn = DSD.KernalTool.LoadPrefabs.GetInstance().GetLoadPrefab("LaborBtn");
-                    btn.transform.parent = LaborBtn_Gam.transform;
-                    break;
-
-                default:
-                    btn = new GameObject();
-                    break;
+                ToggleFade(m_Plot_Toggle, m_Action_Toggle);
             }
-            btn.GetComponent<ActionButton>().action = XMLManager.Instance.actionList[index];
-            btn.GetComponent<RectTransform>().localScale = Vector3.one;
-            btn.GetComponent<ActionButton>().consume = Consume_Gam.GetComponent<Text>();
-            btn.GetComponent<ActionButton>().caption = Caption_Gam.GetComponent<Text>();
-            btn.GetComponent<ActionButton>().determine = OnDetermineClick;
-            actionBtns_ListGams.Add(btn);
-            index++;
-        }
-    }
-
-    public void SetAction(CharacterAction action)
-    {
-        for (int i = 0; i < XMLManager.Instance.actionList.Count; i++)
-        {
-            if (action.Name.Equals(XMLManager.Instance.actionList[i].Name))
+            else if (m_PlotPage.activeSelf)
             {
-                CurrentSelect_Action = action;
+                ToggleFade(m_Action_Toggle, m_Plot_Toggle);
+            }
+            for (int i = 0; i < m_TopicPanels.Length; i++)
+            {
+                // TODO:当前只有1个topic
+                m_TopicPanels[i].SetTopic(XMLManager.Instance.topicList[0]);
+            }
+            InitAction();
+        }
+
+        private void OnActionToggleClick(bool isEnable)
+        {
+            if (isEnable)
+            {
+                ToggleFade(m_Plot_Toggle, m_Action_Toggle);
+                m_ActionPage.SetActive(true);
+                m_PlotPage.SetActive(false);
             }
         }
-    }
 
-    /// <summary>
-    /// 行动按钮的点击事件,根据体力判断是否可选择
-    /// </summary>
-    private void OnDetermineClick()
-    {
-        foreach (SelectedActionButton s in ActionListBtns)
+        private void OnPlotToggleClick(bool isEnable)
         {
-            if (s.action == null)
+            if (isEnable)
             {
-                s.action = CurrentSelect_Action;
-                if (s.action.Consume <= GlobalVariable.instance.player.Strength)
+                ToggleFade(m_Action_Toggle, m_Plot_Toggle);
+                m_ActionPage.SetActive(false);
+                m_PlotPage.SetActive(true);
+                RefreshPlotPanel();
+            }
+        }
+
+        /// <summary>
+        /// Toggle变暗的函数
+        /// </summary>
+        /// <param name="toggleA">要变暗的Toggle</param>
+        /// <param name="toggleB">被点击而恢复的Toggle</param>
+        private void ToggleFade(Toggle toggleA, Toggle toggleB)
+        {
+            ColorBlock cb = toggleB.colors;
+            cb.normalColor = toggleB.colors.pressedColor;
+            toggleA.colors = cb;
+            cb.normalColor = Color.white;
+            toggleB.colors = cb;
+        }
+
+        public void RefreshPlotPanel()
+        {
+            for (int i = 0; i < m_TopicPanels.Length; i++)
+            {
+                m_TopicPanels[i].Refresh();
+            }
+        }
+
+        private ActionType m_Type;
+
+        /// <summary>
+        /// 根据ActionManager加载的xml数据生成按钮并放置于面板中
+        /// </summary>
+        private void InitAction()
+        {
+            int index = 0;
+
+            for (int i = 0; i < m_StudyBtn_Gam.transform.childCount; i++)
+            {
+                Destroy(m_StudyBtn_Gam.transform.GetChild(i).gameObject);
+            }
+            for (int i = 0; i < m_AmusementBtn_Gam.transform.childCount; i++)
+            {
+                Destroy(m_AmusementBtn_Gam.transform.GetChild(i).gameObject);
+            }
+            for (int i = 0; i < m_LaborBtn_Gam.transform.childCount; i++)
+            {
+                Destroy(m_LaborBtn_Gam.transform.GetChild(i).gameObject);
+            }
+
+            while (index < XMLManager.Instance.actionList.Count)
+            {
+                if (GlobalManager.Instance.player.CurRound >= XMLManager.Instance.actionList[index].NeedMinRound &&
+                    GlobalManager.Instance.player.CurRound <= XMLManager.Instance.actionList[index].NeedMaxRound)
                 {
-                    s.SetActionName();
-                    GlobalVariable.instance.player.Strength -= s.action.Consume;
-                    break;
+                    m_Type = XMLManager.Instance.actionList[index].Type;
+                    GameObject btn;
+
+                    switch (m_Type)
+                    {
+                        case ActionType.Study:
+                            btn = DSD.KernalTool.LoadPrefabs.GetInstance().GetLoadPrefab("StudyBtn");
+                            // worldPositionStays设置为false，保留局部方向和比例，防止常见的UI缩放问题
+                            btn.transform.SetParent(m_StudyBtn_Gam.transform, false);
+                            break;
+
+                        case ActionType.Amusement:
+                            btn = DSD.KernalTool.LoadPrefabs.GetInstance().GetLoadPrefab("AmusementBtn");
+                            btn.transform.SetParent(m_AmusementBtn_Gam.transform, false);
+                            break;
+
+                        case ActionType.Labor:
+                            btn = DSD.KernalTool.LoadPrefabs.GetInstance().GetLoadPrefab("LaborBtn");
+                            btn.transform.SetParent(m_LaborBtn_Gam.transform, false);
+                            break;
+
+                        default:
+                            btn = new GameObject();
+                            break;
+                    }
+                    btn.GetComponent<ActionButton>().actionId = index;
+                    btn.GetComponent<RectTransform>().localScale = Vector3.one;
+                    btn.GetComponent<ActionButton>().determine = OnDetermineClick;
+                    m_ActionBtns_ListGams.Add(btn);
                 }
-                else
+                index++;
+            }
+        }
+
+        public void SetAction(CharacterAction action)
+        {
+            for (int i = 0; i < XMLManager.Instance.actionList.Count; i++)
+            {
+                if (action.Name.Equals(XMLManager.Instance.actionList[i].Name))
                 {
-                    s.action = null;
-                    break;
+                    m_CurrentSelect_Action = action;
                 }
             }
         }
-    }
 
-    /// <summary>
-    /// 下一回合按钮事件绑定
-    /// </summary>
-    private void OnNextRoundBtnClick()
-    {
-        if (isNullSelectActionArray(ActionListBtns))
+        /// <summary>
+        /// 行动按钮的点击事件,根据体力判断是否可选择
+        /// </summary>
+        private void OnDetermineClick()
         {
-            switchRoundPanel_Gam.SetActive(true);
-            switchRound_Component.SetActionNames(ActionListBtns);
-        }
-    }
-
-    /// <summary>
-    /// 判断当前选择的列表是否有非空值，
-    /// 第二版将弃用，因为点击一个选择的列表将自动往上滑一格
-    /// </summary>
-    /// <param name="Buttons"></param>
-    /// <returns></returns>
-    private bool isNullSelectActionArray(SelectedActionButton[] Buttons)
-    {
-        if (Buttons.Length > 0)
-        {
-            for (int i = 0; i < Buttons.Length; i++)
+            foreach (SelectedActionButton s in ActionListBtns)
             {
-                if (Buttons[i].action != null)
-                    return true;
+                if (s.action == null)
+                {
+                    s.action = m_CurrentSelect_Action;
+                    if (s.action.Consume <= GlobalManager.Instance.player.Strength ||
+                        (GlobalManager.Instance.player.stateDic.ContainsKey(StateName.Help1) &&
+                         (s.action.Consume + s.action.ConsumeBonus) <= GlobalManager.Instance.player.Strength))
+                    {
+                        s.SetActionName(s.action.Name);
+                        if (GlobalManager.Instance.player.stateDic.ContainsKey(StateName.Help1) && (s.action.Consume > 1))
+                            GlobalManager.Instance.player.Strength -= (s.action.Consume + s.action.ConsumeBonus);
+                        else
+                            GlobalManager.Instance.player.Strength -= s.action.Consume;
+                        break;
+                    }
+                    else
+                    {
+                        s.action = null;
+                        break;
+                    }
+                }
             }
         }
-        return false;
+
+        /// <summary>
+        /// 下一回合按钮事件绑定
+        /// </summary>
+        private void OnNextRoundBtnClick()
+        {
+            if (IsNullSelectActionArray(ActionListBtns))
+            {
+                m_SwitchRoundPanel_Gam.SetActive(true);
+                m_SwitchRound_Component.SetActionNames(ActionListBtns);
+            }
+        }
+
+        /// <summary>
+        /// 判断当前选择的列表是否有非空值，
+        /// 第二版将弃用，因为点击一个选择的列表将自动往上滑一格
+        /// </summary>
+        /// <param name="Buttons"></param>
+        /// <returns></returns>
+        private bool IsNullSelectActionArray(SelectedActionButton[] Buttons)
+        {
+            if (Buttons.Length > 0)
+            {
+                for (int i = 0; i < Buttons.Length; i++)
+                {
+                    if (Buttons[i].action != null)
+                        return true;
+                }
+            }
+            return false;
+        }
+        private void UpdateConsumeAndCaption(string consume, string caption)
+        {
+            m_Consume_Gam.GetComponent<Text>().text = consume;
+            m_Caption_Gam.GetComponent<Text>().text = caption;
+        }
     }
 }

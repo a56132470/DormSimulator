@@ -1,75 +1,91 @@
 ﻿using System.Text;
+using Panel;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerUpHandler, IPointerDownHandler
+namespace Base.ActionSystem
 {
-    // 外边框，当鼠标移动上去时显示
-    private GameObject Border;
-
-    private GameObject ActionName;
-    public CharacterAction action;
-    public Text caption;
-    public Text consume;
-    public UnityEngine.Events.UnityAction determine;
-    private StringBuilder CaptionStr;
-    private StringBuilder ConsumeStr;
-    private ActionPanel actionPanel;
-
-    private void Start()
+    public class ActionButton : MonoBehaviour,  IPointerUpHandler, IPointerDownHandler
     {
-        Border = transform.Find("Border").gameObject;
-        ActionName = transform.Find("ActionName").gameObject;
-        actionPanel = (ActionPanel)UIPanelManager.Instance.GetPanel(UIPanelType.Action);
-        Init();
-    }
+        // 外边框，当鼠标移动上去时显示
+        private GameObject m_Border;
 
-    private void OnEnable()
-    {
-        if (ActionName != null)
+        private GameObject m_ActionName;
+        [FormerlySerializedAs("actionID")] public int actionId;
+        public UnityEngine.Events.UnityAction determine;
+        private StringBuilder m_CaptionStr;
+        private StringBuilder m_ConsumeStr;
+        private ActionPanel m_ActionPanel;
+        [FormerlySerializedAs("m_ConsumeBonus")] public int consumeBonus;
+
+        private void Start()
+        {
+            m_Border = transform.Find("Border").gameObject;
+            m_ActionName = transform.Find("ActionName").gameObject;
+            m_ActionPanel = (ActionPanel)UIPanelManager.Instance.GetPanel(UIPanelType.Action);
             Init();
-    }
+        }
 
-    private void Init()
-    {
-        ActionName.GetComponent<Text>().text = action.Name;
-        CaptionStr = new StringBuilder();
-        ConsumeStr = new StringBuilder();
-        if (action.Logic != 0)
-            CaptionStr.Append("  逻辑+" + (action.Logic + GlobalVariable.instance.player.LogicBonus));
-        if (action.Talk != 0)
-            CaptionStr.Append("  言谈+" + (action.Talk + GlobalVariable.instance.player.TalkBonus));
-        if (action.Athletics != 0)
-            CaptionStr.Append("  体能+" + (action.Athletics + GlobalVariable.instance.player.AthleticsBonus));
-        if (action.Creativity != 0)
-            CaptionStr.Append("  灵感+" + (action.Creativity + GlobalVariable.instance.player.CreativityBonus));
-        if (action.Money != 0)
-            CaptionStr.Append("  零花钱+" + (action.Money));
+        private void OnEnable()
+        {
+            if (m_ActionName != null)
+                Init();
+        }
 
-        if (action.Consume != 0)
-            ConsumeStr.Append("消耗行动点数：<color=" + "#f2a599" + ">" + action.Consume + "</color>");
-    }
+        private void Init()
+        {
+            m_ActionName.GetComponent<Text>().text = XMLManager.Instance.actionList[actionId].Name;
+            m_CaptionStr = new StringBuilder();
+            m_ConsumeStr = new StringBuilder();
+            // TODO: 该改
+            if (XMLManager.Instance.actionList[actionId].Property.Logic != 0)
+                m_CaptionStr.Append("  逻辑+" + (XMLManager.Instance.actionList[actionId].Property.Logic + GlobalManager.Instance.player.bonus.LogicBonus));
+            if (XMLManager.Instance.actionList[actionId].Property.Talk != 0)
+                m_CaptionStr.Append("  言谈+" + (XMLManager.Instance.actionList[actionId].Property.Talk + GlobalManager.Instance.player.bonus.TalkBonus));
+            if (XMLManager.Instance.actionList[actionId].Property.Athletics != 0)
+                m_CaptionStr.Append("  体能+" + (XMLManager.Instance.actionList[actionId].Property.Athletics + GlobalManager.Instance.player.bonus.AthleticsBonus));
+            if (XMLManager.Instance.actionList[actionId].Property.Creativity != 0)
+                m_CaptionStr.Append("  灵感+" + (XMLManager.Instance.actionList[actionId].Property.Creativity + GlobalManager.Instance.player.bonus.CreativityBonus));
+            if (XMLManager.Instance.actionList[actionId].Money != 0)
+                m_CaptionStr.Append("  零花钱+" + (XMLManager.Instance.actionList[actionId].Money));
 
-    // 鼠标移入开启边框
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-    }
+            if (XMLManager.Instance.actionList[actionId].Consume != 0)
+            {
+                int consume;
+                if (GlobalManager.Instance.player.stateDic.ContainsKey(StateName.Help1) && XMLManager.Instance.actionList[actionId].Type == ActionType.Labor)
+                {
+                    consume = XMLManager.Instance.actionList[actionId].Consume + XMLManager.Instance.actionList[actionId].ConsumeBonus;
+                    if (consume >= 1)
+                        m_ConsumeStr.Append("消耗行动点数：<color=" + "#f2a599" + ">" + consume + "</color>");
+                    else
+                        m_ConsumeStr.Append("消耗行动点数：<color=" + "#f2a599" + ">" + (XMLManager.Instance.actionList[actionId].Consume) +
+                                            "</color>");
+                }
+                else
+                    m_ConsumeStr.Append("消耗行动点数：<color=" + "#f2a599" + ">" + (XMLManager.Instance.actionList[actionId].Consume) +
+                                        "</color>");
 
-    // 鼠标移出关闭边框
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (Border != null)
-            Border.SetActive(false);
-    }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (Border != null)
-            Border.SetActive(true);
-        caption.text = CaptionStr.ToString();
-        actionPanel.SetAction(action);
-        consume.text = ConsumeStr.ToString();
-        determine();
+            }
+        }
+
+        // 鼠标移出关闭边框
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            if (m_Border != null)
+                m_Border.SetActive(false);
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (m_Border != null)
+                m_Border.SetActive(true);
+            m_ActionPanel.SetAction(XMLManager.Instance.actionList[actionId]);
+            EventCenter.Broadcast(EventType.UPDATE_ACTIONCAPTION, m_ConsumeStr.ToString(), m_CaptionStr.ToString());
+            determine();
+        }
     }
 }
+

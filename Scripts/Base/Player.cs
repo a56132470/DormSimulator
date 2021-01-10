@@ -1,19 +1,18 @@
-﻿using UnityEngine;
+﻿using Base.ActionSystem;
+using Base.Struct;
+using UnityEngine;
 
 [System.Serializable]
 public class Player : BasePerson
 {
     // 体力
     [SerializeField]
-    private int strength;
+    private int m_Strength;
 
-    // 当前回合
-    private int curRound;
+
 
     // 周目，暂时找不到周目的单词
-    private int curWeek;
-
-    public string[,] records;
+    private int m_CurWeek;
 
     public Player()
     {
@@ -25,22 +24,22 @@ public class Player : BasePerson
     /// 初始化
     /// </summary>
     /// <param name="name"></param>
+    /// <param name="logic"></param>
+    /// <param name="talk"></param>
+    /// <param name="athletics"></param>
+    /// <param name="creativity"></param>
+    /// <param name="money"></param>
     public Player(string name, int logic, int talk, int athletics, int creativity, int money)
     {
         Name = name;
-        Logic = logic;
-        Talk = talk;
-        Athletics = athletics;
-        Creativity = creativity;
+        propertyStruct = new PropertyStruct(logic,athletics,talk,creativity);
         Money = money;
         // 成长值均为0
-        LogicBonus = 0;
-        TalkBonus = 0;
-        AthleticsBonus = 0;
-        CreativityBonus = 0;
-        strength = 5;
+        bonus = new BonusStruct(0,0,0,0);
+
+        m_Strength = 5;
         CurWeek = 1;
-        curRound = 1;
+        m_CurRound = 1;
         stateDic = new System.Collections.Generic.Dictionary<string, State>();
         records = new string[24, 5];
     }
@@ -50,42 +49,19 @@ public class Player : BasePerson
     /// </summary>
     public int Strength
     {
-        get => strength;
+        get => m_Strength;
         set
         {
-            strength = value;
+            m_Strength = value;
 
             // 体力限制在0--5之间
-            if (strength < 0)
-                strength = 0;
-            if (strength > 5)
-                strength = 5;
+            if (m_Strength < 0)
+                m_Strength = 0;
+            if (m_Strength > 5)
+                m_Strength = 5;
             if (StrengthManager.Instance != null)
             {
-                StrengthManager.Instance.ChangeStrength(strength);
-            }
-        }
-    }
-
-    /// <summary>
-    /// 当前回合
-    /// </summary>
-    public int CurRound
-    {
-        get
-        {
-            return curRound;
-        }
-        set
-        {
-            curRound = value;
-            if (curRound > 24)
-            {
-                curRound = 24;
-            }
-            if (curRound <= 0)
-            {
-                curRound = 1;
+                StrengthManager.Instance.ChangeStrength(m_Strength);
             }
         }
     }
@@ -97,30 +73,31 @@ public class Player : BasePerson
     {
         get
         {
-            return curWeek;
+            return m_CurWeek;
         }
         set
         {
-            curWeek = value;
-            if (curWeek <= 0)
+            m_CurWeek = value;
+            if (m_CurWeek <= 0)
             {
-                curWeek = 1;
+                m_CurWeek = 1;
             }
         }
     }
-
-
-    public void AddRecordAction(string content)
+    public override void AddRecordAction(string content)
     {
-        int j = 0;
-        for (int i = 0; i < 5; i++)
+        base.AddRecordAction(content);
         {
-            if (records[CurRound - 1, i] == null)
+            int j = 0;
+            for (int i = 0; i < 5; i++)
             {
-                j = i;
-                break;
+                if (records[CurRound - 1, i] == null)
+                {
+                    j = i;
+                    break;
+                }
             }
+            records[CurRound - 1, j] = content;
         }
-        records[CurRound - 1, j] = content;
     }
 }

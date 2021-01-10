@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4886e4b658c739478f3b6eea5ea37bf, type: 3}
+  m_Name: PaintCans
+  m_EditorClassIdentifier: 
+  ItemName: "\u989C\u6599\u7F50"
+  ItemImage: {fileID: -1692687518410529283, guid: 8c2255a7459fe4c4aa19e00b284233fa,
+    type: 3}
+  ItemHeld: 1
+  ItemPrice: 10
+  ItemEffect: "\u4F7F\u7528\u540E\u83B7\u5F97\u72B6\u6001\u3010\u6D82\u6D82\u753B\u753B\u3011"
+  ItemCaption: "\u7ED9\u4ED6\u70B9\u989C\u8272\u770B\u770B\u3002"

@@ -63,8 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 8cc70d898429ec64298294c1bfcd9be2, type: 3}
-  - {fileID: 21300000, guid: 00d4df844bf572a459c196e34c410830, type: 3}
+  - {fileID: 21300000, guid: d7bb7c57e072eff4e894e5921ba0a3cb, type: 3}
+  - {fileID: 21300000, guid: 26b600c1dab1b284ba1280a7fcb8b5e0, type: 3}
 --- !u!1 &7071287935499769026
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d7bb7c57e072eff4e894e5921ba0a3cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

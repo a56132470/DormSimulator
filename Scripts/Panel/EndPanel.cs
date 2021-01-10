@@ -1,115 +1,119 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class EndPanel : BasePanel
+namespace Panel
 {
-    private Text endText;
-    private Button endButton;
-    private Sprite[] sprites;
-    private string[] strs;
-
-    private GameObject CreateSaveTipPanel;
-    private Button CST_CancelBtn;
-    private Button CST_DetermineBtn;
-
-    private GameObject CreateRolePanel;
-    private Button CRP_DetermineBtn;
-    private InputField CRP_CreateNameInputField;
-
-    public override void Init()
+    public class EndPanel : BasePanel
     {
-        base.Init();
-        endText = transform.Find("Text").GetComponent<Text>();
-        endButton = transform.Find("ImageBtn").GetComponent<Button>();
+        private Text m_EndText;
+        private Button m_EndButton;
+        private Sprite[] m_Sprites;
+        private string[] m_Strs;
 
-        CreateSaveTipPanel = transform.Find("CreateSaveTipPanel").gameObject;
-        CST_CancelBtn = CreateSaveTipPanel.transform.Find("CST_CancelBtn").GetComponent<Button>();
-        CST_DetermineBtn = CreateSaveTipPanel.transform.Find("CST_DetermineBtn").GetComponent<Button>();
+        private GameObject m_CreateSaveTipPanel;
+        private Button m_CST_CancelBtn;
+        private Button m_CST_DetermineBtn;
 
-        CreateRolePanel = transform.Find("CreateRolePanel").gameObject;
-        CRP_DetermineBtn = CreateRolePanel.transform.Find("CRP_DetermineBtn").GetComponent<Button>();
-        CRP_CreateNameInputField = CreateRolePanel.GetComponentInChildren<InputField>();
+        private GameObject m_CreateRolePanel;
+        private Button m_CRP_DetermineBtn;
+        private InputField m_CRP_CreateNameInputField;
 
-        sprites = new Sprite[4];
-        strs = new string[4];
-    }
-
-    public override void OnEnter()
-    {
-        base.OnEnter();
-
-        // CST 是否创建角色
-        CST_CancelBtn.onClick.AddListener(OnCSTCancelBtnClick);
-        CST_DetermineBtn.onClick.AddListener(OnCSTDetermineBtnClick);
-        // CRP:创建角色
-        CRP_DetermineBtn.onClick.AddListener(OnCRPDetermineBtnClick);
-        endButton.onClick.AddListener(OnEndBtnClick);
-    }
-
-    public override void OnExit()
-    {
-        base.OnExit();
-
-        CST_CancelBtn.onClick.RemoveListener(OnCSTCancelBtnClick);
-        CST_DetermineBtn.onClick.RemoveListener(OnCSTDetermineBtnClick);
-
-        CRP_DetermineBtn.onClick.RemoveListener(OnCRPDetermineBtnClick);
-        endButton.onClick.RemoveListener(OnEndBtnClick);
-    }
-
-    public override void OnPause()
-    {
-        base.OnPause();
-        gameObject.SetActive(false);
-    }
-
-    public override void OnResume()
-    {
-        base.OnResume();
-        gameObject.SetActive(true);
-    }
-
-    private void OnEndBtnClick()
-    {
-        //// 切换图片
-        //if(sprites!=null&&sprites[3]!=null)
-        //{
-        //}
-        //else
+        public override void Init()
         {
-            CreateSaveTipPanel.SetActive(true);
+            base.Init();
+            m_EndText = transform.Find("Text").GetComponent<Text>();
+            m_EndButton = transform.Find("ImageBtn").GetComponent<Button>();
+
+            m_CreateSaveTipPanel = transform.Find("CreateSaveTipPanel").gameObject;
+            m_CST_CancelBtn = m_CreateSaveTipPanel.transform.Find("CST_CancelBtn").GetComponent<Button>();
+            m_CST_DetermineBtn = m_CreateSaveTipPanel.transform.Find("CST_DetermineBtn").GetComponent<Button>();
+
+            m_CreateRolePanel = transform.Find("CreateRolePanel").gameObject;
+            m_CRP_DetermineBtn = m_CreateRolePanel.transform.Find("CRP_DetermineBtn").GetComponent<Button>();
+            m_CRP_CreateNameInputField = m_CreateRolePanel.GetComponentInChildren<InputField>();
+
+            m_Sprites = new Sprite[4];
+            m_Strs = new string[4];
         }
-    }
 
-    private void OnCSTCancelBtnClick()
-    {
-        // Disappear
-        CreateSaveTipPanel.SetActive(false);
-    }
-
-    private void OnCSTDetermineBtnClick()
-    {
-        CreateSaveTipPanel.SetActive(false);
-        CreateRolePanel.SetActive(true);
-    }
-
-    private void OnCRPDetermineBtnClick()
-    {
-        string PlayerName = CRP_CreateNameInputField.text;
-        if (PlayerName.Equals(""))
+        public override void OnEnter()
         {
-            // TODO: 提示模块
-            Debug.Log("请您输入名字");
+            base.OnEnter();
+
+            // CST 是否创建角色
+            m_CST_CancelBtn.onClick.AddListener(OnCSTCancelBtnClick);
+            m_CST_DetermineBtn.onClick.AddListener(OnCSTDetermineBtnClick);
+            // CRP:创建角色
+            m_CRP_DetermineBtn.onClick.AddListener(OnCRPDetermineBtnClick);
+            m_EndButton.onClick.AddListener(OnEndBtnClick);
         }
-        else
-        {
-            GameInit.Instance.Init(PlayerName, GlobalVariable.instance.player.CurWeek + 1, GlobalVariable.instance.SaveID);
 
-            GameSaveManager.instance.SaveGame();
-            CreateRolePanel.SetActive(false);
-            CRP_CreateNameInputField.text = "";
-            // 进行一次存档操作
-            UIPanelManager.Instance.PopPanel();
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            m_CST_CancelBtn.onClick.RemoveListener(OnCSTCancelBtnClick);
+            m_CST_DetermineBtn.onClick.RemoveListener(OnCSTDetermineBtnClick);
+
+            m_CRP_DetermineBtn.onClick.RemoveListener(OnCRPDetermineBtnClick);
+            m_EndButton.onClick.RemoveListener(OnEndBtnClick);
+        }
+
+        public override void OnPause()
+        {
+            base.OnPause();
+            gameObject.SetActive(false);
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+            gameObject.SetActive(true);
+        }
+
+        private void OnEndBtnClick()
+        {
+            //// 切换图片
+            //if(sprites!=null&&sprites[3]!=null)
+            //{
+            //}
+            //else
+            {
+                m_CreateSaveTipPanel.SetActive(true);
+            }
+        }
+
+        private void OnCSTCancelBtnClick()
+        {
+            // Disappear
+            m_CreateSaveTipPanel.SetActive(false);
+        }
+
+        private void OnCSTDetermineBtnClick()
+        {
+            m_CreateSaveTipPanel.SetActive(false);
+            m_CreateRolePanel.SetActive(true);
+        }
+
+        private void OnCRPDetermineBtnClick()
+        {
+            string PlayerName = m_CRP_CreateNameInputField.text;
+            if (PlayerName.Equals(""))
+            {
+                UIPanelManager.Instance.PushPanel(UIPanelType.Tip);
+                EventCenter.Broadcast(EventType.UPDATE_TIP, "请您输入名字");
+            }
+            else
+            {
+                EventCenter.Broadcast(EventType.GAME_INIT, PlayerName, GlobalManager.Instance.player.CurWeek + 1, GlobalManager.Instance.saveId);
+                EventCenter.Broadcast(EventType.UPDATE_ACTIONPANEL_EVENT);
+                GameSaveManager.Instance.SaveGame();
+                m_CreateRolePanel.SetActive(false);
+                m_CRP_CreateNameInputField.text = "";
+                PlotManager.Instance.ExecuteMainBlock("StartStory");
+                // 进行一次存档操作
+                UIPanelManager.Instance.PopPanel();
+            }
         }
     }
 }

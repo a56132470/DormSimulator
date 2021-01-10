@@ -4,7 +4,7 @@ namespace DSD.KernalTool
 {
     public class LoadPrefabs : MonoBehaviour
     {
-        private static LoadPrefabs _Instance;           // 脚本实例
+        private static LoadPrefabs m_Instance;           // 脚本实例
 
         /// <summary>
         /// 类实例
@@ -12,11 +12,11 @@ namespace DSD.KernalTool
         /// <returns></returns>
         public static LoadPrefabs GetInstance()
         {
-            if (_Instance == null)
+            if (m_Instance == null)
             {
-                _Instance = new LoadPrefabs();
+                m_Instance = new LoadPrefabs();
             }
-            return _Instance;
+            return m_Instance;
         }
 
         /// <summary>
@@ -29,9 +29,9 @@ namespace DSD.KernalTool
             // 把资源加载到内存中
             Object go = Resources.Load("Prefabs/" + prefabsPathAndName, typeof(GameObject));
             // 用加载得到的资源对象，实例化游戏对象，实现游戏物体的动态加载
-            GameObject LoadPrefab = Instantiate(go) as GameObject;
+            GameObject loadPrefab = Instantiate(go) as GameObject;
 
-            return LoadPrefab;
+            return loadPrefab;
         }
     }
 }

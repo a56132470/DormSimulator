@@ -1,81 +1,86 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class TopicPanel : MonoBehaviour
+namespace Base.PlotSystem
 {
-    // 主题名称
-    private Text TopicNameTxt;
-
-    private Button goBtn;
-    private Image unlockImg;
-
-    // 底部panel，实在想不出词儿了，负责存放解锁事件及未解锁事件的图标
-    private GameObject bottomPanel;
-
-    private Image[] plotImgs;
-
-    // 事件/情节 列表，存放当前panel里的情节，当情节解锁时未解锁改为解锁
-    private Topic topic;
-
-    private int plotIndex = 0;
-
-    private void Awake()
+    public class TopicPanel : MonoBehaviour
     {
-        TopicNameTxt = transform.Find("TopicName").GetComponent<Text>();
-        bottomPanel = transform.Find("BottomPanel").gameObject;
-        plotImgs = bottomPanel.GetComponentsInChildren<Image>();
-        goBtn = transform.Find("GoBtn").GetComponent<Button>();
-        unlockImg = transform.Find("Unlock").GetComponent<Image>();
-    }
+        // 主题名称
+        private Text m_TopicNameTxt;
 
-    public void SetTopic(Topic tp)
-    {
-        topic = tp;
-        TopicNameTxt.text = topic.TopicName;
-    }
+        private Button m_GoBtn;
+        private Image m_UnlockImg;
 
-    public void Refresh()
-    {
-        // 进入主题，即刷新页面，判断是否有情节解锁，有情节解锁则该主题解锁
-        if (RefreshPlotState())
+        // 底部panel，实在想不出词儿了，负责存放解锁事件及未解锁事件的图标
+        private GameObject m_BottomPanel;
+
+        private Image[] m_PlotImgs;
+
+        // 事件/情节 列表，存放当前panel里的情节，当情节解锁时未解锁改为解锁
+        private Topic m_Topic;
+
+        private int m_PlotIndex = 0;
+
+        private void Awake()
         {
-            goBtn.gameObject.SetActive(true);
-            unlockImg.gameObject.SetActive(false);
-            goBtn.onClick.RemoveAllListeners();
-            goBtn.onClick.AddListener(() => { OnGoBtnClick(topic.plots[plotIndex].place); });
-            gameObject.SetActive(true);
+            m_TopicNameTxt = transform.Find("TopicName").GetComponent<Text>();
+            m_BottomPanel = transform.Find("BottomPanel").gameObject;
+            m_PlotImgs = m_BottomPanel.GetComponentsInChildren<Image>();
+            m_GoBtn = transform.Find("GoBtn").GetComponent<Button>();
+            m_UnlockImg = transform.Find("Unlock").GetComponent<Image>();
         }
-        else
-        {
-            goBtn.gameObject.SetActive(false);
-            unlockImg.gameObject.SetActive(true);
-        }
-    }
 
-    private bool RefreshPlotState()
-    {
-        for (int i = 0; i < 6; i++)
+        public void SetTopic(Topic tp)
         {
-            if (topic.plots[i].isFinish)
+            m_Topic = tp;
+            if (m_TopicNameTxt != null)
+                m_TopicNameTxt.text = m_Topic.TopicName;
+            else
+                transform.Find("TopicName").GetComponent<Text>().text = m_Topic.TopicName;
+        }
+
+        public void Refresh()
+        {
+            // 进入主题，即刷新页面，判断是否有情节解锁，有情节解锁则该主题解锁
+            if (RefreshPlotState())
             {
-                plotImgs[i].color = new Color(0.9254903f, 0.6862745f, 0.4627451f);
+                m_GoBtn.gameObject.SetActive(true);
+                m_UnlockImg.gameObject.SetActive(false);
+                m_GoBtn.onClick.RemoveAllListeners();
+                m_GoBtn.onClick.AddListener(() => { OnGoBtnClick(m_Topic.Plots[m_PlotIndex].Place); });
+                gameObject.SetActive(true);
             }
-            if (topic.plots[i].isLock == true && topic.plots[i].CheckUnlockCondition())
+            else
             {
-                topic.plots[i].isLock = false;
-
-                plotIndex = i;
-                return true;
+                m_GoBtn.gameObject.SetActive(false);
+                m_UnlockImg.gameObject.SetActive(true);
             }
         }
-        return false;
-    }
 
-    private void OnGoBtnClick(string pt)
-    {
-        UIPanelManager.Instance.PushPanel(UIPanelType.Place);
-        ((PlacePanel)UIPanelManager.Instance.GetPanel(UIPanelType.Place)).SetPlaceType(pt);
-        PlotManager.instance.SetTopic(topic);
-        PlotManager.instance.ShowBranch();
+        private bool RefreshPlotState()
+        {
+            for (var i = 0; i < 6; i++)
+            {
+                if (m_Topic.Plots[i].IsFinish)
+                {
+                    m_PlotImgs[i].color = new Color(0.9254903f, 0.6862745f, 0.4627451f);
+                }
+                if (m_Topic.Plots[i].IsLock && m_Topic.Plots[i].CheckUnlockCondition())
+                {
+                    m_Topic.Plots[i].IsLock = false;
+
+                    m_PlotIndex = i;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void OnGoBtnClick(string pt)
+        {
+            EventCenter.Broadcast(EventType.CHANGE_SKIN, pt);
+            PlotManager.Instance.SetTopic(m_Topic);
+            PlotManager.Instance.ShowBranch((m_PlotIndex + 1));
+        }
     }
 }

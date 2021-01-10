@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 
-public class Topic
+namespace Base.PlotSystem
 {
-    public string TopicName;
-    public List<Plot> plots;
-
-    public Topic()
+    public class Topic
     {
-        plots = new List<Plot>();
+        public string TopicName;
+        public List<Plot> Plots;
+
+        public Topic()
+        {
+            Plots = new List<Plot>();
+        }
     }
 }
