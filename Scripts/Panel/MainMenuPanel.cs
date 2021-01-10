@@ -32,7 +32,7 @@ namespace Panel
             m_RoommateBtns[2] = transform.Find("Roommates/Roommate3").GetComponent<Button>();
         }
 
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
             base.OnEnter();
             m_ProfileBtn.onClick.AddListener(OnProfileBtnClick);

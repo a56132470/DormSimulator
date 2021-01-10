@@ -3,7 +3,7 @@
 public class BasePanel : MonoBehaviour, IBasePanel
 {
     protected CanvasGroup CanvasGroup;
-    protected GameObject Block;
+    private GameObject _block;
 
     public virtual void Init()
     {
@@ -14,16 +14,16 @@ public class BasePanel : MonoBehaviour, IBasePanel
         CanvasGroup = GetComponent<CanvasGroup>();
         // 触碰区域
         if (transform.Find("Block") != null)
-            Block = transform.Find("Block").gameObject;
+            _block = transform.Find("Block").gameObject;
         else
-            Block = null;
+            _block = null;
     }
 
-    public virtual void OnEnter()
+    public virtual void OnEnter(object intent = null)
     {
         gameObject.SetActive(true);
-        if (Block != null)
-            Block.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { UIPanelManager.Instance.PopPanel(); });
+        if (_block != null)
+            _block.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { UIPanelManager.Instance.PopPanel(); });
         Init();
     }
 
@@ -40,7 +40,7 @@ public class BasePanel : MonoBehaviour, IBasePanel
     public virtual void OnExit()
     {
         gameObject.SetActive(false);
-        if (Block != null)
-            Block.GetComponent<UnityEngine.UI.Button>().onClick.RemoveAllListeners();
+        if (_block != null)
+            _block.GetComponent<UnityEngine.UI.Button>().onClick.RemoveAllListeners();
     }
 }

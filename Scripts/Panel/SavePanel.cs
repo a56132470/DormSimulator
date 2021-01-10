@@ -24,7 +24,7 @@ namespace Panel
         // 当前点击的按钮的ID
         private int m_Count;
 
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
             base.OnEnter();
             gameObject.SetActive(true);

@@ -18,7 +18,7 @@ namespace Panel
             m_PlaygroundBtn = transform.Find("PlaygroundBtn").GetComponent<Button>();
         }
 
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
             base.OnEnter();
             m_StoreBtn.onClick.AddListener(OnStoreBtnClick);

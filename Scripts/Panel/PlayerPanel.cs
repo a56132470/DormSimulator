@@ -89,7 +89,7 @@ namespace Panel
             propertyTxts = m_PropertyPanel.GetComponentsInChildren<Text>();
         }
 
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
             base.OnEnter();
             InitProperty();

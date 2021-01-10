@@ -30,15 +30,14 @@ public class UIPanelManager : MonoBehaviour
         {
             Instance = this;
         }
-        else
-            // ReSharper disable once RedundantJumpStatement
-            return;
     }
+
     /// <summary>
     /// 将UIPanel推入栈
     /// </summary>
     /// <param name="panelType"></param>
-    public void PushPanel(string panelType)
+    /// <param name="intent"></param>
+    public void PushPanel(string panelType,object intent = null)
     {
         if (m_PanelStack == null)
         {
@@ -53,7 +52,7 @@ public class UIPanelManager : MonoBehaviour
 
         BasePanel panel = GetPanel(panelType);
         m_PanelStack.Push(panel);
-        panel.OnEnter();
+        panel.OnEnter(intent);
     }
     /// <summary>
     ///  弹出栈顶的UIPanel，并恢复弹出后栈顶的面板

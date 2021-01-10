@@ -11,9 +11,9 @@ namespace Panel
 
         private Button m_TipOkBtn;
         private Text m_TipCaptionText;
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
-            base.OnEnter();
+            base.OnEnter(intent);
             m_ToastCancelBtn.onClick.AddListener(ClosePanel);
             m_TipOkBtn.onClick.AddListener(ClosePanel);
             // Toast 和 Tip都关掉

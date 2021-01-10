@@ -4,8 +4,7 @@ public static class DictTool
 {
     public static Tvalue GetValue<TKey, Tvalue>(this Dictionary<TKey, Tvalue> dict, TKey key)
     {
-        Tvalue value;
-        dict.TryGetValue(key, out value);
+        dict.TryGetValue(key, out var value);
         return value;
     }
 }

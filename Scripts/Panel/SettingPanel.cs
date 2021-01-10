@@ -18,7 +18,7 @@ namespace Panel
             musicEffectVolumeSlider = transform.Find("Panel/SoundEffectVolume/Slider").GetComponent<Slider>();
         }
 
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
             base.OnEnter();
             //if (UIPanelManager.Instance.GetComponentInChildren<SavePanel>()

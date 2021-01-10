@@ -5,10 +5,7 @@ namespace Panel
 {
     public class EndPanel : BasePanel
     {
-        private Text m_EndText;
         private Button m_EndButton;
-        private Sprite[] m_Sprites;
-        private string[] m_Strs;
 
         private GameObject m_CreateSaveTipPanel;
         private Button m_CST_CancelBtn;
@@ -21,7 +18,7 @@ namespace Panel
         public override void Init()
         {
             base.Init();
-            m_EndText = transform.Find("Text").GetComponent<Text>();
+            transform.Find("Text").GetComponent<Text>();
             m_EndButton = transform.Find("ImageBtn").GetComponent<Button>();
 
             m_CreateSaveTipPanel = transform.Find("CreateSaveTipPanel").gameObject;
@@ -31,12 +28,9 @@ namespace Panel
             m_CreateRolePanel = transform.Find("CreateRolePanel").gameObject;
             m_CRP_DetermineBtn = m_CreateRolePanel.transform.Find("CRP_DetermineBtn").GetComponent<Button>();
             m_CRP_CreateNameInputField = m_CreateRolePanel.GetComponentInChildren<InputField>();
-
-            m_Sprites = new Sprite[4];
-            m_Strs = new string[4];
         }
 
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
             base.OnEnter();
 
@@ -73,14 +67,7 @@ namespace Panel
 
         private void OnEndBtnClick()
         {
-            //// 切换图片
-            //if(sprites!=null&&sprites[3]!=null)
-            //{
-            //}
-            //else
-            {
-                m_CreateSaveTipPanel.SetActive(true);
-            }
+            m_CreateSaveTipPanel.SetActive(true);
         }
 
         private void OnCSTCancelBtnClick()
@@ -97,15 +84,15 @@ namespace Panel
 
         private void OnCRPDetermineBtnClick()
         {
-            string PlayerName = m_CRP_CreateNameInputField.text;
-            if (PlayerName.Equals(""))
+            string playerName = m_CRP_CreateNameInputField.text;
+            if (playerName.Equals(""))
             {
                 UIPanelManager.Instance.PushPanel(UIPanelType.Tip);
                 EventCenter.Broadcast(EventType.UPDATE_TIP, "请您输入名字");
             }
             else
             {
-                EventCenter.Broadcast(EventType.GAME_INIT, PlayerName, GlobalManager.Instance.player.CurWeek + 1, GlobalManager.Instance.saveId);
+                EventCenter.Broadcast(EventType.GAME_INIT, playerName, GlobalManager.Instance.player.CurWeek + 1, GlobalManager.Instance.saveId);
                 EventCenter.Broadcast(EventType.UPDATE_ACTIONPANEL_EVENT);
                 GameSaveManager.Instance.SaveGame();
                 m_CreateRolePanel.SetActive(false);

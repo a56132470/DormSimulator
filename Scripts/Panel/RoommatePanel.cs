@@ -48,7 +48,7 @@ namespace Panel
             m_RecordPage = transform.Find("Content/RecordPage").gameObject;
         }
 
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
             base.OnEnter();
             m_State_Toggle.onValueChanged.AddListener(OnStateToggleClick);

@@ -75,11 +75,6 @@ namespace Base.StateModule
             stateGams.Add(statepanel);
         }
 
-        public void SetRoommateID(int id)
-        {
-            person = GlobalManager.Instance.roommates[id];
-        }
-
         public string Translate(State state)
         {
             StringBuilder effectCaption = new StringBuilder();

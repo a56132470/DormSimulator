@@ -87,7 +87,7 @@ public class XMLManager : MonoBehaviour
     /// </summary>
     /// <param name="action"></param>
     /// <param name="actions"></param>
-    private List<CharacterAction>[] LoadAction(XmlElement action, List<CharacterAction> actions)
+    private void LoadAction(XmlElement action, List<CharacterAction> actions)
     {
         CharacterAction ac = new CharacterAction();
 
@@ -147,7 +147,6 @@ public class XMLManager : MonoBehaviour
         characterActionArray[0] = m_StudyActions;
         characterActionArray[1] = m_AmusementActions;
         characterActionArray[2] = m_LaborActions;
-        return characterActionArray;
     }
 
     /// <summary>

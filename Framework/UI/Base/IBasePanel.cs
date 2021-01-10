@@ -13,7 +13,7 @@ public interface IBasePanel
     /// 面板进入时调用
     /// </summary>
     [UsedImplicitly]
-    void OnEnter();
+    void OnEnter(object intent = null);
 
     /// <summary>
     /// 面板停止时调用（鼠标与面板的交互停止）

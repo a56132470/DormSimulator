@@ -56,7 +56,7 @@ namespace Panel
 
         private CharacterAction m_CurrentSelect_Action;
 
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
             base.OnEnter();
             // 绑定事件
@@ -234,9 +234,11 @@ namespace Panel
                             btn = new GameObject();
                             break;
                     }
-                    btn.GetComponent<ActionButton>().actionId = index;
+
+                    var actionBtn = btn.GetComponent<ActionButton>();
+                    actionBtn.actionId = index;
                     btn.GetComponent<RectTransform>().localScale = Vector3.one;
-                    btn.GetComponent<ActionButton>().determine = OnDetermineClick;
+                    actionBtn.determine = OnDetermineClick;
                     m_ActionBtns_ListGams.Add(btn);
                 }
                 index++;

@@ -24,7 +24,7 @@ namespace Panel
             m_SettingButton = transform.Find("SettingBtn").GetComponent<Button>();
         }
 
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
             base.OnEnter();
             m_StartButton.onClick.AddListener(OnStartButtonClick);

@@ -16,7 +16,7 @@ namespace Panel
             m_ReturnBtn = transform.Find("ReturnBtn").GetComponent<Button>();
         }
 
-        public override void OnEnter()
+        public override void OnEnter(object intent = null)
         {
             base.OnEnter();
             m_ReturnBtn.onClick.AddListener(OnReturnButtonClick);
